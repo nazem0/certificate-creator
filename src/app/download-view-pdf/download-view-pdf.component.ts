@@ -13,9 +13,9 @@ export class DownloadViewPdfComponent {
   public pdfSrc = "";
   private api = "https://localhost:44343/api"
   public dummy = {
-    "studentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "studentId": "470E95E9-EC4C-4AF0-AB52-1A5077D7F5C2",
     "scholarshipAwarded": 0,
-    "courseId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "courseId": "2827816E-F794-44A3-8F0F-9960A5AE0012",
     "totaltuitionfees": 0,
     "downpayment": 0,
     "paymentDeadLine": "2024-01-08T12:30:43.020Z",
@@ -42,19 +42,24 @@ export class DownloadViewPdfComponent {
     this.getRegistrationLetter(this.registrationLetterFrom.value);
   }
   public getRegistrationLetter(data: any) {
-    this.http.post<ApiResponse>(`${this.api}/StudentAdmin/DemoSendAcceptanceLetter`, data).subscribe({
+    this.http.post<ApiResponse>(`${this.api}/StudentAdmin/GetAcceptanceLetter`, data).subscribe({
       next: (response) => {
-        const byteCharacters = atob(response.result as string);
-        const byteNumbers = new Array(byteCharacters.length);
-        for (let i = 0; i < byteCharacters.length; i++) {
-          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        if(!response.ok){
+          console.error(response);
         }
-        const byteArray = new Uint8Array(byteNumbers);
-        const blob = new Blob([byteArray], { type: 'application/pdf' });
-        this.pdfSrc = window.URL.createObjectURL(blob);
+        else{
+          const byteCharacters = atob(response.result as string);
+          const byteNumbers = new Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+          }
+          const byteArray = new Uint8Array(byteNumbers);
+          const blob = new Blob([byteArray], { type: 'application/pdf' });
+          this.pdfSrc = window.URL.createObjectURL(blob);
+        }
       },
       error: (error) => {
-        console.error('Error downloading certificate:', error);
+        console.error(error);
       }
     })
   }
@@ -71,13 +76,14 @@ export class DownloadViewPdfComponent {
   }
   viewRegistrationLetter() {
     if(!this.pdfSrc) alert("The PDF File Was Not Received");
+    let container = document.querySelector(".container");
     let iframe = document.createElement("iframe")
     iframe.src = this.pdfSrc;
     iframe.height = "800px";
     iframe.width = "100%";
-    document.body.append(iframe)
+    container?.append(iframe)
   }
   openOnNewTab(){
-    window.open(this.pdfSrc,"_blank")
+    window.open(this.pdfSrc)
   }
 }

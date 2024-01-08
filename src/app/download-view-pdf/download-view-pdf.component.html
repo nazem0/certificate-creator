@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row row-cols-md-3">
+        <button (click)="viewRegistrationLetter()" class="btn btn-primary" [disabled]="!this.pdfSrc">
+            View
+        </button>
+        <button (click)="openOnNewTab()" class="btn btn-info text-white" [disabled]="!this.pdfSrc">
+            View On New Tab
+        </button>
+        <button (click)="downloadRegistrationLetter()" class="btn btn-success" [disabled]="!this.pdfSrc">
+            Download
+        </button>
+    </div>
+</div>

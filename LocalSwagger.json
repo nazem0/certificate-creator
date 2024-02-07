@@ -1379,17 +1379,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnnouncementInListViewModelListSwaggerOutput"
+                  "$ref": "#/components/schemas/AnnouncementInListViewModelPagedOutputSwaggerOutput"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnnouncementInListViewModelListSwaggerOutput"
+                  "$ref": "#/components/schemas/AnnouncementInListViewModelPagedOutputSwaggerOutput"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AnnouncementInListViewModelListSwaggerOutput"
+                  "$ref": "#/components/schemas/AnnouncementInListViewModelPagedOutputSwaggerOutput"
                 }
               }
             }
@@ -21071,7 +21071,24 @@
         },
         "additionalProperties": false
       },
-      "AnnouncementInListViewModelListSwaggerOutput": {
+      "AnnouncementInListViewModelPagedOutput": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementInListViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnnouncementInListViewModelPagedOutputSwaggerOutput": {
         "type": "object",
         "properties": {
           "statusCode": {
@@ -21086,11 +21103,7 @@
             "type": "boolean"
           },
           "result": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AnnouncementInListViewModel"
-            },
-            "nullable": true
+            "$ref": "#/components/schemas/AnnouncementInListViewModelPagedOutput"
           }
         },
         "additionalProperties": false

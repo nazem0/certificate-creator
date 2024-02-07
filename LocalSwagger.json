@@ -1312,19 +1312,12 @@
             }
           },
           {
-            "name": "DepartmentManagerId",
+            "name": "EmployeeId",
             "in": "query",
             "schema": {
               "type": "string",
               "format": "uuid",
               "nullable": true
-            }
-          },
-          {
-            "name": "IsAdmin",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
             }
           },
           {
@@ -1390,6 +1383,73 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AnnouncementInListViewModelPagedOutputSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Announcement"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnnouncementInputViewModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnnouncementInputViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnnouncementInputViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnnouncementInputViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuidSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuidSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuidSwaggerOutput"
                 }
               }
             }
@@ -1504,6 +1564,60 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Announcement/{id}": {
+      "get": {
+        "tags": [
+          "Announcement"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnnouncementViewModelSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnnouncementViewModelSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnnouncementViewModelSwaggerOutput"
                 }
               }
             }
@@ -3893,6 +4007,250 @@
         }
       }
     },
+    "/api/Course/GetCourseCompetencies": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddCourseCompetenciesVMSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddCourseCompetenciesVMSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddCourseCompetenciesVMSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Course/UpdateCourseCompetencies": {
+      "put": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCourseCompetenciesVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCourseCompetenciesVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCourseCompetenciesVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCourseCompetenciesVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Course/GetCourseRequiredCourse": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddRequiredCoursesVMSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddRequiredCoursesVMSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddRequiredCoursesVMSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Course/UpdateCourseRequiredCourse": {
+      "put": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddRequiredCoursesVM"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddRequiredCoursesVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddRequiredCoursesVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddRequiredCoursesVM"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Course": {
       "post": {
         "tags": [
@@ -4890,7 +5248,7 @@
         }
       }
     },
-    "/api/Course/CourseDDViewModel": {
+    "/api/Course/GetCourseForAnnouncement": {
       "get": {
         "tags": [
           "Course"
@@ -5447,7 +5805,7 @@
         }
       }
     },
-    "/api/DepartmentSection/GetById": {
+    "/api/DepartmentSection/GetDepartmentSection": {
       "get": {
         "tags": [
           "DepartmentSection"
@@ -6740,51 +7098,6 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EnumValueListSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/ExternalCourse": {
-      "get": {
-        "tags": [
-          "ExternalCourse"
-        ],
-        "parameters": [
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExternalCourseVMListSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExternalCourseVMListSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExternalCourseVMListSwaggerOutput"
                 }
               }
             }
@@ -20998,9 +21311,7 @@
           0,
           1,
           2,
-          3,
-          4,
-          5
+          3
         ],
         "type": "integer",
         "format": "int32"
@@ -21011,7 +21322,8 @@
           1,
           2,
           3,
-          4
+          4,
+          5
         ],
         "type": "integer",
         "format": "int32"
@@ -21067,6 +21379,10 @@
           "waitingEmployees": {
             "type": "integer",
             "format": "int32"
+          },
+          "waitingHrEmployees": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -21108,6 +21424,54 @@
         },
         "additionalProperties": false
       },
+      "AnnouncementInputViewModel": {
+        "type": "object",
+        "properties": {
+          "announcementId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "announcementType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "numberOfSeats": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "StringAnnouncementStatusDictionarySwaggerOutput": {
         "type": "object",
         "properties": {
@@ -21142,6 +21506,321 @@
           "employeeId": {
             "type": "string",
             "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnnouncementEmployeeViewModel": {
+        "type": "object",
+        "properties": {
+          "announcementEmployeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "announcementId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AnnouncementEmployeeStatus"
+          },
+          "statusNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "managerReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "hrReason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseType": {
+        "enum": [
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "DepartmentVM": {
+        "type": "object",
+        "properties": {
+          "departmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "departmentName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DepartmentSectionVM": {
+        "type": "object",
+        "properties": {
+          "sectionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sectionName": {
+            "type": "string",
+            "nullable": true
+          },
+          "departmentId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompetencyLevelVM": {
+        "type": "object",
+        "properties": {
+          "competencyLevelId": {
+            "type": "string",
+            "nullable": true
+          },
+          "competencyLevelName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RankServiceVM": {
+        "type": "object",
+        "properties": {
+          "rankServiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "rankServiceName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompetenciesVM": {
+        "type": "object",
+        "properties": {
+          "competenciesId": {
+            "type": "string",
+            "nullable": true
+          },
+          "competenciesName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SkillsCompetenceVM": {
+        "type": "object",
+        "properties": {
+          "skillsCompetenceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "skillsCompetenceName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RequiredInCourseVM": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnnouncementModuleViewModel": {
+        "type": "object",
+        "properties": {
+          "lessons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "lessonNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "moduleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "moduleIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnnouncementViewModel": {
+        "type": "object",
+        "properties": {
+          "announcementEmployee": {
+            "$ref": "#/components/schemas/AnnouncementEmployeeViewModel"
+          },
+          "announcementId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "announcementType": {
+            "$ref": "#/components/schemas/CourseType"
+          },
+          "type": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "numberOfSeats": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/AnnouncementStatus"
+          },
+          "announcementStatus": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseName": {
+            "type": "string",
+            "nullable": true
+          },
+          "departments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DepartmentVM"
+            },
+            "nullable": true
+          },
+          "departmentSectios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DepartmentSectionVM"
+            },
+            "nullable": true
+          },
+          "competencyLevels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompetencyLevelVM"
+            },
+            "nullable": true
+          },
+          "rankServices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RankServiceVM"
+            },
+            "nullable": true
+          },
+          "competencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompetenciesVM"
+            },
+            "nullable": true
+          },
+          "skillsCompetences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SkillsCompetenceVM"
+            },
+            "nullable": true
+          },
+          "requiredCourses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequiredInCourseVM"
+            },
+            "nullable": true
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementModuleViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnnouncementViewModelSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "$ref": "#/components/schemas/AnnouncementViewModel"
           }
         },
         "additionalProperties": false
@@ -22293,20 +22972,6 @@
         },
         "additionalProperties": false
       },
-      "CompetenciesVM": {
-        "type": "object",
-        "properties": {
-          "competenciesId": {
-            "type": "string",
-            "nullable": true
-          },
-          "competenciesName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "CompetenciesVMListSwaggerOutput": {
         "type": "object",
         "properties": {
@@ -22326,20 +22991,6 @@
             "items": {
               "$ref": "#/components/schemas/CompetenciesVM"
             },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CompetencyLevelVM": {
-        "type": "object",
-        "properties": {
-          "competencyLevelId": {
-            "type": "string",
-            "nullable": true
-          },
-          "competencyLevelName": {
-            "type": "string",
             "nullable": true
           }
         },
@@ -22629,6 +23280,129 @@
         },
         "additionalProperties": false
       },
+      "AddCourseCompetenciesVM": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "departmentId": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "departmentSectionId": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "competenciesId": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "competencyLevelId": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "rankServiceId": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "skillsCompetenceId": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddCourseCompetenciesVMSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "$ref": "#/components/schemas/AddCourseCompetenciesVM"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddRequiredCoursesVM": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "requiredExternalCourses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "requiredInCourses": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddRequiredCoursesVMSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "$ref": "#/components/schemas/AddRequiredCoursesVM"
+          }
+        },
+        "additionalProperties": false
+      },
       "CourseInputViewModel": {
         "type": "object",
         "properties": {
@@ -22777,6 +23551,10 @@
           "statusName": {
             "type": "string",
             "nullable": true
+          },
+          "announcementsNumber": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -22853,64 +23631,6 @@
         },
         "additionalProperties": false
       },
-      "AddCourseCompetenciesVM": {
-        "type": "object",
-        "properties": {
-          "courseId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "departmentId": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "nullable": true
-          },
-          "departmentSectionId": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "nullable": true
-          },
-          "competenciesId": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "nullable": true
-          },
-          "competencyLevelId": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "nullable": true
-          },
-          "rankServiceId": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "nullable": true
-          },
-          "skillsCompetenceId": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "AddRequiredExternalCourseVM": {
         "type": "object",
         "properties": {
@@ -22921,8 +23641,7 @@
           "externalCourseId": {
             "type": "array",
             "items": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             },
             "nullable": true
           }
@@ -23222,20 +23941,6 @@
         },
         "additionalProperties": false
       },
-      "DepartmentVM": {
-        "type": "object",
-        "properties": {
-          "departmentId": {
-            "type": "string",
-            "nullable": true
-          },
-          "departmentName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "DepartmentVMListSwaggerOutput": {
         "type": "object",
         "properties": {
@@ -23256,24 +23961,6 @@
               "$ref": "#/components/schemas/DepartmentVM"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "DepartmentSectionVM": {
-        "type": "object",
-        "properties": {
-          "sectionId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "sectionName": {
-            "type": "string",
-            "nullable": true
-          },
-          "departmentId": {
-            "type": "string",
-            "format": "uuid"
           }
         },
         "additionalProperties": false
@@ -23754,64 +24441,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EnumValue"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ExternalCourseVM": {
-        "type": "object",
-        "properties": {
-          "courseId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "objective": {
-            "type": "string",
-            "nullable": true
-          },
-          "longDescription": {
-            "type": "string",
-            "nullable": true
-          },
-          "language": {
-            "type": "string",
-            "nullable": true
-          },
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "seoMetaDescription": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ExternalCourseVMListSwaggerOutput": {
-        "type": "object",
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "ok": {
-            "type": "boolean"
-          },
-          "result": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExternalCourseVM"
             },
             "nullable": true
           }
@@ -27372,20 +28001,6 @@
         },
         "additionalProperties": false
       },
-      "RankServiceVM": {
-        "type": "object",
-        "properties": {
-          "rankServiceId": {
-            "type": "string",
-            "nullable": true
-          },
-          "rankServiceName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "RankServiceVMListSwaggerOutput": {
         "type": "object",
         "properties": {
@@ -27593,20 +28208,6 @@
             "nullable": true
           },
           "roleEnglishName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SkillsCompetenceVM": {
-        "type": "object",
-        "properties": {
-          "skillsCompetenceId": {
-            "type": "string",
-            "nullable": true
-          },
-          "skillsCompetenceName": {
             "type": "string",
             "nullable": true
           }

@@ -1258,7 +1258,7 @@
             }
           },
           {
-            "name": "Id",
+            "name": "CourseId",
             "in": "query",
             "schema": {
               "type": "string",

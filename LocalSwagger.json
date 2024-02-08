@@ -5298,6 +5298,14 @@
         ],
         "parameters": [
           {
+            "name": "getAllPublishedCourses",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
             "name": "language",
             "in": "header",
             "description": "ar for Arabic or en for English",

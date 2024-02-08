@@ -1275,7 +1275,7 @@
             }
           },
           {
-            "name": "Status",
+            "name": "AnnouncementStatus",
             "in": "query",
             "schema": {
               "uniqueItems": true,
@@ -1287,13 +1287,39 @@
             }
           },
           {
-            "name": "EmployeeStatus",
+            "name": "EmployeeRequestStatus",
             "in": "query",
             "schema": {
               "uniqueItems": true,
               "type": "array",
               "items": {
                 "$ref": "#/components/schemas/AnnouncementEmployeeStatus"
+              },
+              "nullable": true
+            }
+          },
+          {
+            "name": "Sections",
+            "in": "query",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "nullable": true
+            }
+          },
+          {
+            "name": "RankServices",
+            "in": "query",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
               },
               "nullable": true
             }
@@ -1312,11 +1338,28 @@
             }
           },
           {
-            "name": "EmployeeId",
+            "name": "SkillCompetencies",
             "in": "query",
             "schema": {
-              "type": "string",
-              "format": "uuid",
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "nullable": true
+            }
+          },
+          {
+            "name": "CompetencyLevels",
+            "in": "query",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
               "nullable": true
             }
           },

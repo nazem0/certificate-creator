@@ -1484,17 +1484,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/StringAnnouncementStatusDictionarySwaggerOutput"
+                  "$ref": "#/components/schemas/EnumModelListSwaggerOutput"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StringAnnouncementStatusDictionarySwaggerOutput"
+                  "$ref": "#/components/schemas/EnumModelListSwaggerOutput"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StringAnnouncementStatusDictionarySwaggerOutput"
+                  "$ref": "#/components/schemas/EnumModelListSwaggerOutput"
                 }
               }
             }
@@ -7098,6 +7098,166 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EnumValueListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Employee/{id}": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeViewModelSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeViewModelSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeViewModelSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Employee/RequestToCourseByEmployee": {
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "parameters": [
+          {
+            "name": "AnnouncementId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Employee/WithdrawToCourseByEmployee": {
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "parameters": [
+          {
+            "name": "AnnouncementId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
                 }
               }
             }
@@ -21472,7 +21632,21 @@
         },
         "additionalProperties": false
       },
-      "StringAnnouncementStatusDictionarySwaggerOutput": {
+      "EnumModel": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EnumModelListSwaggerOutput": {
         "type": "object",
         "properties": {
           "statusCode": {
@@ -21487,9 +21661,9 @@
             "type": "boolean"
           },
           "result": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/AnnouncementStatus"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnumModel"
             },
             "nullable": true
           }
@@ -21684,6 +21858,51 @@
         },
         "additionalProperties": false
       },
+      "AnnouncementEmployeeListViewModel": {
+        "type": "object",
+        "properties": {
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "employeeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "department": {
+            "type": "string",
+            "nullable": true
+          },
+          "rank": {
+            "type": "string",
+            "nullable": true
+          },
+          "departmentSection": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/AnnouncementEmployeeStatus"
+          },
+          "statusNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "managerReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "hrReason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AnnouncementViewModel": {
         "type": "object",
         "properties": {
@@ -21799,6 +22018,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AnnouncementModuleViewModel"
+            },
+            "nullable": true
+          },
+          "employees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementEmployeeListViewModel"
             },
             "nullable": true
           }
@@ -22163,44 +22389,6 @@
           },
           "result": {
             "$ref": "#/components/schemas/AssignmentListPagedOutput"
-          }
-        },
-        "additionalProperties": false
-      },
-      "EnumModel": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "EnumModelListSwaggerOutput": {
-        "type": "object",
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "ok": {
-            "type": "boolean"
-          },
-          "result": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EnumModel"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -24447,6 +24635,125 @@
         },
         "additionalProperties": false
       },
+      "SkillsCompetenceEmployeeVM": {
+        "type": "object",
+        "properties": {
+          "skillsCompetenceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "skillsCompetenceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "competencyLevelId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "competencyLevelName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmployeeViewModel": {
+        "type": "object",
+        "properties": {
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "employeeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeManagerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "managerNationalId": {
+            "type": "string",
+            "nullable": true
+          },
+          "workPlace": {
+            "type": "string",
+            "nullable": true
+          },
+          "departmentId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "departmentSectionId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "rankID": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "department": {
+            "type": "string",
+            "nullable": true
+          },
+          "rank": {
+            "type": "string",
+            "nullable": true
+          },
+          "departmentSection": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstWorkDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "isManager": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isHr": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "skillsCompetences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SkillsCompetenceEmployeeVM"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmployeeViewModelSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "$ref": "#/components/schemas/EmployeeViewModel"
+          }
+        },
+        "additionalProperties": false
+      },
       "ProgramLectureInstructorViewModel": {
         "type": "object",
         "properties": {
@@ -26050,7 +26357,8 @@
           39,
           40,
           41,
-          42
+          42,
+          43
         ],
         "type": "integer",
         "format": "int32"
@@ -26088,6 +26396,11 @@
           "creationDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -26172,6 +26485,11 @@
             "nullable": true
           },
           "referenceId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "creationUser": {
             "type": "string",
             "format": "uuid",
             "nullable": true

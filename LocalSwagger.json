@@ -22551,7 +22551,12 @@
             "$ref": "#/components/schemas/AnnouncementStatus"
           },
           "requestStatus": {
-            "$ref": "#/components/schemas/AnnouncementEmployeeStatus"
+            "type": "string",
+            "nullable": true
+          },
+          "requestStatusValue": {
+            "type": "integer",
+            "format": "int32"
           },
           "startDate": {
             "type": "string",
@@ -22747,7 +22752,8 @@
             "format": "uuid"
           },
           "status": {
-            "$ref": "#/components/schemas/AnnouncementEmployeeStatus"
+            "type": "string",
+            "nullable": true
           },
           "statusNumber": {
             "type": "integer",

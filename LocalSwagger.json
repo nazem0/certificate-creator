@@ -1267,6 +1267,14 @@
             }
           },
           {
+            "name": "CourseCode",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
             "name": "AnnouncementName",
             "in": "query",
             "schema": {
@@ -1325,19 +1333,6 @@
             }
           },
           {
-            "name": "Competencies",
-            "in": "query",
-            "schema": {
-              "uniqueItems": true,
-              "type": "array",
-              "items": {
-                "type": "string",
-                "format": "uuid"
-              },
-              "nullable": true
-            }
-          },
-          {
             "name": "SkillCompetencies",
             "in": "query",
             "schema": {
@@ -1361,6 +1356,13 @@
                 "format": "uuid"
               },
               "nullable": true
+            }
+          },
+          {
+            "name": "MyAnnouncementsOnly",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
             }
           },
           {
@@ -1565,6 +1567,57 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Announcement"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/Announcement/AnnouncementStatus": {
@@ -1612,7 +1665,61 @@
         }
       }
     },
-    "/api/Announcement/CancelAnncoucnment": {
+    "/api/Announcement/CancelAnncoucnment/{id}": {
+      "post": {
+        "tags": [
+          "Announcement"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Announcement/PublishAnncoucnment/{id}": {
       "post": {
         "tags": [
           "Announcement"
@@ -1782,6 +1889,85 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AnnouncementViewModelSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Announcement/GetEmployeesByAnnouncmentId": {
+      "get": {
+        "tags": [
+          "Announcement"
+        ],
+        "parameters": [
+          {
+            "name": "AnnouncementId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Departments",
+            "in": "query",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "nullable": true
+            }
+          },
+          {
+            "name": "Sections",
+            "in": "query",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "nullable": true
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnnouncementEmployeebyStatusSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnnouncementEmployeebyStatusSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnnouncementEmployeebyStatusSwaggerOutput"
                 }
               }
             }
@@ -5419,7 +5605,52 @@
         ],
         "parameters": [
           {
-            "name": "getAllPublishedCourses",
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseDDViewModelListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseDDViewModelListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseDDViewModelListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Course/CoursesInAnnouncements": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "onlyInMyAnnouncements",
             "in": "query",
             "schema": {
               "type": "boolean",
@@ -7537,20 +7768,12 @@
         }
       }
     },
-    "/api/Employee/WithdrawToCourseByEmployee": {
-      "post": {
+    "/api/Employee/WithdrawFromAnnouncementByEmployee": {
+      "put": {
         "tags": [
           "Employee"
         ],
         "parameters": [
-          {
-            "name": "AnnouncementId",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
           {
             "name": "language",
             "in": "header",
@@ -7566,6 +7789,30 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WithdrawFromAnnouncementDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WithdrawFromAnnouncementDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WithdrawFromAnnouncementDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WithdrawFromAnnouncementDTO"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success",
@@ -7891,38 +8138,22 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/RequestEmployeeByHr"
-                },
-                "nullable": true
+                "$ref": "#/components/schemas/WaitListEmployeeByHr"
               }
             },
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/RequestEmployeeByHr"
-                },
-                "nullable": true
+                "$ref": "#/components/schemas/WaitListEmployeeByHr"
               }
             },
             "text/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/RequestEmployeeByHr"
-                },
-                "nullable": true
+                "$ref": "#/components/schemas/WaitListEmployeeByHr"
               }
             },
             "application/*+json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/RequestEmployeeByHr"
-                },
-                "nullable": true
+                "$ref": "#/components/schemas/WaitListEmployeeByHr"
               }
             }
           }
@@ -15241,6 +15472,59 @@
         }
       }
     },
+    "/api/SkillsCompetence/GetSkillsByCompetenciesId": {
+      "get": {
+        "tags": [
+          "SkillsCompetence"
+        ],
+        "parameters": [
+          {
+            "name": "competenciesId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillsCompetenceVMListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillsCompetenceVMListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillsCompetenceVMListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/StudentAdmin/GetStudentById": {
       "get": {
         "tags": [
@@ -16263,124 +16547,6 @@
       }
     },
     "/api/StudentAdmin/GStudentListManagement": {
-      "get": {
-        "tags": [
-          "StudentAdmin"
-        ],
-        "parameters": [
-          {
-            "name": "SearchText",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "Status",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "nullable": true
-            }
-          },
-          {
-            "name": "ProgramId",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "nullable": true
-            }
-          },
-          {
-            "name": "Mobile",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "Email",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "PageNumber",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "SortBy",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "IsSortAscending",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentsInProgramVMPagedOutputSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentsInProgramVMPagedOutputSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentsInProgramVMPagedOutputSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/StudentAdmin/GetRegisteredStudents": {
       "get": {
         "tags": [
           "StudentAdmin"
@@ -22356,7 +22522,8 @@
           2,
           3,
           4,
-          5
+          5,
+          6
         ],
         "type": "integer",
         "format": "int32"
@@ -22376,9 +22543,8 @@
             "type": "string",
             "nullable": true
           },
-          "courseId": {
+          "courseCode": {
             "type": "string",
-            "format": "uuid",
             "nullable": true
           },
           "status": {
@@ -22414,6 +22580,10 @@
             "format": "int32"
           },
           "waitingHrEmployees": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "withdrawnEmployees": {
             "type": "integer",
             "format": "int32"
           }
@@ -22590,6 +22760,10 @@
           "hrReason": {
             "type": "string",
             "nullable": true
+          },
+          "employeeReason": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -22602,20 +22776,6 @@
         ],
         "type": "integer",
         "format": "int32"
-      },
-      "DepartmentVM": {
-        "type": "object",
-        "properties": {
-          "departmentId": {
-            "type": "string",
-            "nullable": true
-          },
-          "departmentName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       },
       "DepartmentSectionVM": {
         "type": "object",
@@ -22631,6 +22791,27 @@
           "departmentId": {
             "type": "string",
             "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DepartmentVM": {
+        "type": "object",
+        "properties": {
+          "departmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "departmentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "departmentSectionVMs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DepartmentSectionVM"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -22654,9 +22835,23 @@
         "properties": {
           "rankServiceId": {
             "type": "string",
-            "nullable": true
+            "format": "uuid"
           },
           "rankServiceName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SkillsCompetenceVM": {
+        "type": "object",
+        "properties": {
+          "skillsCompetenceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "skillsCompetenceName": {
             "type": "string",
             "nullable": true
           }
@@ -22673,19 +22868,12 @@
           "competenciesName": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SkillsCompetenceVM": {
-        "type": "object",
-        "properties": {
-          "skillsCompetenceId": {
-            "type": "string",
-            "nullable": true
           },
-          "skillsCompetenceName": {
-            "type": "string",
+          "skillsCompetences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SkillsCompetenceVM"
+            },
             "nullable": true
           }
         },
@@ -22708,10 +22896,6 @@
       "RequiredExternalCourseVM": {
         "type": "object",
         "properties": {
-          "courseId": {
-            "type": "string",
-            "format": "uuid"
-          },
           "courseName": {
             "type": "string",
             "nullable": true
@@ -22744,55 +22928,6 @@
           "startDate": {
             "type": "string",
             "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "AnnouncementEmployeeListViewModel": {
-        "type": "object",
-        "properties": {
-          "announcementEmployeeId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "employeeId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "employeeName": {
-            "type": "string",
-            "nullable": true
-          },
-          "employeeImage": {
-            "type": "string",
-            "nullable": true
-          },
-          "department": {
-            "type": "string",
-            "nullable": true
-          },
-          "rank": {
-            "type": "string",
-            "nullable": true
-          },
-          "departmentSection": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/AnnouncementEmployeeStatus"
-          },
-          "statusNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "managerReason": {
-            "type": "string",
-            "nullable": true
-          },
-          "hrReason": {
-            "type": "string",
             "nullable": true
           }
         },
@@ -22926,13 +23061,6 @@
               "$ref": "#/components/schemas/AnnouncementModuleViewModel"
             },
             "nullable": true
-          },
-          "employees": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AnnouncementEmployeeListViewModel"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -22953,6 +23081,177 @@
           },
           "result": {
             "$ref": "#/components/schemas/AnnouncementViewModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnnouncementEmployeeListViewModel": {
+        "type": "object",
+        "properties": {
+          "announcementEmployeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "employeeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "department": {
+            "type": "string",
+            "nullable": true
+          },
+          "rank": {
+            "type": "string",
+            "nullable": true
+          },
+          "departmentSection": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/AnnouncementEmployeeStatus"
+          },
+          "statusNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "managerReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "hrReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeReason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmployessTypes": {
+        "type": "object",
+        "properties": {
+          "suggested": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementEmployeeListViewModel"
+            },
+            "nullable": true
+          },
+          "pending": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementEmployeeListViewModel"
+            },
+            "nullable": true
+          },
+          "approved": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementEmployeeListViewModel"
+            },
+            "nullable": true
+          },
+          "reject": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementEmployeeListViewModel"
+            },
+            "nullable": true
+          },
+          "waitingHr": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementEmployeeListViewModel"
+            },
+            "nullable": true
+          },
+          "waitingList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementEmployeeListViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Counts": {
+        "type": "object",
+        "properties": {
+          "allCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "suggestedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pendingCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "approvedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rejectCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "waitingHrCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "waitingListCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "withdrawnEmployees": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnnouncementEmployeebyStatus": {
+        "type": "object",
+        "properties": {
+          "employessTypes": {
+            "$ref": "#/components/schemas/EmployessTypes"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/Counts"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnnouncementEmployeebyStatusSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "$ref": "#/components/schemas/AnnouncementEmployeebyStatus"
           }
         },
         "additionalProperties": false
@@ -24295,9 +24594,11 @@
             "type": "string",
             "format": "uuid"
           },
-          "level": {
-            "type": "integer",
-            "format": "int32",
+          "ranks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RankServiceVM"
+            },
             "nullable": true
           },
           "code": {
@@ -24550,9 +24851,12 @@
             "type": "string",
             "format": "uuid"
           },
-          "level": {
-            "type": "integer",
-            "format": "int32",
+          "ranks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
             "nullable": true
           },
           "code": {
@@ -24649,6 +24953,13 @@
           "announcementsNumber": {
             "type": "integer",
             "format": "int32"
+          },
+          "ranks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RankServiceVM"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -25541,29 +25852,6 @@
         },
         "additionalProperties": false
       },
-      "SkillsCompetenceEmployeeVM": {
-        "type": "object",
-        "properties": {
-          "skillsCompetenceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "skillsCompetenceName": {
-            "type": "string",
-            "nullable": true
-          },
-          "competencyLevelId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "competencyLevelName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "EmployeeViewModel": {
         "type": "object",
         "properties": {
@@ -25629,13 +25917,6 @@
           "isHr": {
             "type": "boolean",
             "nullable": true
-          },
-          "skillsCompetences": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SkillsCompetenceEmployeeVM"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -25670,6 +25951,23 @@
         },
         "additionalProperties": false
       },
+      "WithdrawFromAnnouncementDTO": {
+        "required": [
+          "announcementId",
+          "reason"
+        ],
+        "type": "object",
+        "properties": {
+          "announcementId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "AcceptRejectEmployees": {
         "type": "object",
         "properties": {
@@ -25683,6 +25981,20 @@
           },
           "reason": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WaitListEmployeeByHr": {
+        "type": "object",
+        "properties": {
+          "announcementEmployeeIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
             "nullable": true
           }
         },
@@ -27315,7 +27627,9 @@
           49,
           50,
           51,
-          52
+          52,
+          53,
+          54
         ],
         "type": "integer",
         "format": "int32"

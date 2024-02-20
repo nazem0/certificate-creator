@@ -11193,6 +11193,48 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Notification"
+        ],
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
       }
     },
     "/api/Notification/{id}": {
@@ -25307,7 +25349,8 @@
           "ranks": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/RankServiceVM"
+              "type": "string",
+              "format": "uuid"
             },
             "nullable": true
           },

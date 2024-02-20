@@ -28442,6 +28442,11 @@
             "type": "string",
             "format": "uuid",
             "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -28531,6 +28536,11 @@
             "nullable": true
           },
           "creationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "modificationUser": {
             "type": "string",
             "format": "uuid",
             "nullable": true

@@ -25848,7 +25848,8 @@
         "properties": {
           "organizationId": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
           },
           "organizationName": {
             "type": "string",
@@ -25983,12 +25984,8 @@
             "format": "int32",
             "nullable": true
           },
-          "organizations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OrganizationVM"
-            },
-            "nullable": true
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationVM"
           }
         },
         "additionalProperties": false
@@ -26098,12 +26095,9 @@
             "type": "string",
             "format": "uuid"
           },
-          "organizationCourses": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
+          "organization": {
+            "type": "string",
+            "format": "uuid",
             "nullable": true
           },
           "requiredInCourses": {
@@ -26191,13 +26185,9 @@
             "format": "uuid",
             "nullable": true
           },
-          "organizations": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "nullable": true
+          "organization": {
+            "type": "string",
+            "format": "uuid"
           },
           "level": {
             "type": "integer",
@@ -26272,12 +26262,8 @@
             "type": "string",
             "nullable": true
           },
-          "organizations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OrganizationVM"
-            },
-            "nullable": true
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationVM"
           },
           "totalStudent": {
             "type": "integer",
@@ -26405,13 +26391,9 @@
             "type": "string",
             "format": "uuid"
           },
-          "organizationCoursesId": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "nullable": true
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
           }
         },
         "additionalProperties": false

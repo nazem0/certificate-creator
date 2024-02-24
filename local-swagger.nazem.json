@@ -5527,7 +5527,7 @@
         }
       }
     },
-    "/api/Course/AddRequiredOrganizationCourse": {
+    "/api/Course/AddOrganizationCourse": {
       "post": {
         "tags": [
           "Course"

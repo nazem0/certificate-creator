@@ -5527,7 +5527,7 @@
         }
       }
     },
-    "/api/Course/AddOrganizationCourse": {
+    "/api/Course/AddRequiredOtherCourse": {
       "post": {
         "tags": [
           "Course"
@@ -5552,22 +5552,22 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/AddOrganizationCoursesVM"
+                "$ref": "#/components/schemas/AddRequiredOtherCourseVM"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddOrganizationCoursesVM"
+                "$ref": "#/components/schemas/AddRequiredOtherCourseVM"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddOrganizationCoursesVM"
+                "$ref": "#/components/schemas/AddRequiredOtherCourseVM"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AddOrganizationCoursesVM"
+                "$ref": "#/components/schemas/AddRequiredOtherCourseVM"
               }
             }
           }
@@ -5958,6 +5958,13 @@
           "Course"
         ],
         "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/CourseType"
+            }
+          },
           {
             "name": "language",
             "in": "header",
@@ -23988,7 +23995,8 @@
         "enum": [
           1,
           2,
-          3
+          3,
+          4
         ],
         "type": "integer",
         "format": "int32"
@@ -26100,6 +26108,13 @@
             "format": "uuid",
             "nullable": true
           },
+          "requiredOtherCourses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
           "requiredInCourses": {
             "type": "array",
             "items": {
@@ -26384,16 +26399,19 @@
         },
         "additionalProperties": false
       },
-      "AddOrganizationCoursesVM": {
+      "AddRequiredOtherCourseVM": {
         "type": "object",
         "properties": {
           "courseId": {
             "type": "string",
             "format": "uuid"
           },
-          "organizationId": {
-            "type": "string",
-            "format": "uuid"
+          "otherCourse": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

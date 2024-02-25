@@ -3954,17 +3954,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CompetenciesVMListSwaggerOutput"
+                  "$ref": "#/components/schemas/CompetenciesVMPagedOutputSwaggerOutput"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CompetenciesVMListSwaggerOutput"
+                  "$ref": "#/components/schemas/CompetenciesVMPagedOutputSwaggerOutput"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CompetenciesVMListSwaggerOutput"
+                  "$ref": "#/components/schemas/CompetenciesVMPagedOutputSwaggerOutput"
                 }
               }
             }
@@ -25622,7 +25622,24 @@
         },
         "additionalProperties": false
       },
-      "CompetenciesVMListSwaggerOutput": {
+      "CompetenciesVMPagedOutput": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompetenciesVM"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompetenciesVMPagedOutputSwaggerOutput": {
         "type": "object",
         "properties": {
           "statusCode": {
@@ -25637,11 +25654,7 @@
             "type": "boolean"
           },
           "result": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CompetenciesVM"
-            },
-            "nullable": true
+            "$ref": "#/components/schemas/CompetenciesVMPagedOutput"
           }
         },
         "additionalProperties": false
@@ -26202,7 +26215,8 @@
           },
           "organization": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
           },
           "level": {
             "type": "integer",

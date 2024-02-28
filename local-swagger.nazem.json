@@ -6057,6 +6057,60 @@
         }
       }
     },
+    "/api/Course/GetTopCoursesList": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "top",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 4
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopCourseVMListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopCourseVMListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopCourseVMListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/CourseCategory/{id}": {
       "get": {
         "tags": [
@@ -6472,6 +6526,60 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CategoryListCourseModelListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CourseCategory/TopCategories": {
+      "get": {
+        "tags": [
+          "CourseCategory"
+        ],
+        "parameters": [
+          {
+            "name": "top",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopCategoryListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopCategoryListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopCategoryListSwaggerOutput"
                 }
               }
             }
@@ -12293,6 +12401,60 @@
         }
       }
     },
+    "/api/Program/TopPrograms": {
+      "get": {
+        "tags": [
+          "Program"
+        ],
+        "parameters": [
+          {
+            "name": "top",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 4
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopProgramVMListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopProgramVMListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopProgramVMListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/ProgramLecture/GetLectureByScheduleId": {
       "get": {
         "tags": [
@@ -15487,6 +15649,256 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RankServiceVMListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Review": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "parameters": [
+          {
+            "name": "ReviewId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "name": "CourseId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "name": "ProgramId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "name": "ReviewContent",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "Rate",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            }
+          },
+          {
+            "name": "StudentId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "IsSortAscending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewPagedOutputSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewPagedOutputSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewPagedOutputSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Review"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewInputDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewInputDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewInputDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewInputDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationState"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationState"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationState"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Review/{reviewId}": {
+      "delete": {
+        "tags": [
+          "Review"
+        ],
+        "parameters": [
+          {
+            "name": "reviewId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationState"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationState"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationState"
                 }
               }
             }
@@ -22925,7 +23337,8 @@
           11,
           12,
           13,
-          14
+          14,
+          15
         ],
         "type": "integer",
         "format": "int32"
@@ -26268,6 +26681,9 @@
           "status": {
             "type": "integer",
             "format": "int32"
+          },
+          "isTop": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -26486,6 +26902,108 @@
         },
         "additionalProperties": false
       },
+      "CourseLevel": {
+        "enum": [
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "TopCourseVM": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "objective": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/CourseType"
+          },
+          "levelId": {
+            "$ref": "#/components/schemas/CourseLevel"
+          },
+          "levelName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isFree": {
+            "type": "boolean"
+          },
+          "mainPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "specialPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "specialValidTill": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "courseImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "lessonsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "studentsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "avgRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "reviewsCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TopCourseVMListSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TopCourseVM"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CourseCategoryDetailViewModel": {
         "type": "object",
         "properties": {
@@ -26556,6 +27074,9 @@
             "type": "string",
             "format": "uuid",
             "nullable": true
+          },
+          "isTop": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -26717,6 +27238,56 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CategoryListCourseModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TopCategory": {
+        "type": "object",
+        "properties": {
+          "courseCategoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lessonsCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TopCategoryListSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TopCategory"
             },
             "nullable": true
           }
@@ -29538,6 +30109,118 @@
         },
         "additionalProperties": false
       },
+      "TopProgramVM": {
+        "type": "object",
+        "properties": {
+          "programId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "programTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "timeSetupInputViewModels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramTimeSetupViewModel"
+            },
+            "nullable": true
+          },
+          "objective": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/CourseType"
+          },
+          "levelId": {
+            "$ref": "#/components/schemas/CourseLevel"
+          },
+          "levelName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isFree": {
+            "type": "boolean"
+          },
+          "mainPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "specialPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "specialValidTill": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "courseImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "lessonsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "studentsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "averageRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "reviewsCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TopProgramVMListSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TopProgramVM"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LectureInputViewModel": {
         "type": "object",
         "properties": {
@@ -31081,6 +31764,4443 @@
         },
         "additionalProperties": false
       },
+      "StudentStatus": {
+        "enum": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "StudyMethod": {
+        "enum": [
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "TitleOfStudent": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Gender": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "MainContactAddress": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "EnrollmentType": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ResponsibleFees": {
+        "enum": [
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Nationality": {
+        "type": "object",
+        "properties": {
+          "nationalityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "englishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "arabicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EnrollmentCompany": {
+        "type": "object",
+        "properties": {
+          "enrollmentCompanyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "englishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "arabicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "perctange": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "responsibleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsiblePhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentDetail"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentDetail": {
+        "type": "object",
+        "properties": {
+          "studentDetailId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "$ref": "#/components/schemas/TitleOfStudent"
+          },
+          "foreNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "preferredName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sex": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "dateBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "idOrPassportNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "nationalityId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "countryPermanentResidence": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "telephone": {
+            "type": "string",
+            "nullable": true
+          },
+          "mainContactAddress": {
+            "$ref": "#/components/schemas/MainContactAddress"
+          },
+          "enrollmentType": {
+            "$ref": "#/components/schemas/EnrollmentType"
+          },
+          "enrollmentCompanyId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "presentJob": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateAppointed": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "employer": {
+            "type": "string",
+            "nullable": true
+          },
+          "telephoneJob": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailJob": {
+            "type": "string",
+            "nullable": true
+          },
+          "employerBusiness": {
+            "type": "string",
+            "nullable": true
+          },
+          "yearsManagerialExperience": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "yearsTotalExperience": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "currentResponsibilitie": {
+            "type": "string",
+            "nullable": true
+          },
+          "qualificationList": {
+            "type": "string",
+            "nullable": true
+          },
+          "highestAcademicQualification": {
+            "type": "string",
+            "nullable": true
+          },
+          "professionalQualifications": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsibleFees": {
+            "$ref": "#/components/schemas/ResponsibleFees"
+          },
+          "percentageSplitYou": {
+            "type": "number",
+            "format": "double"
+          },
+          "percentageSplitCompany": {
+            "type": "number",
+            "format": "double"
+          },
+          "tuitionFeesURE": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tuitionFeesOther": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "installmentsNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mainSourceOfInfoPrompted": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mainSourceOfInfoPromptedOther": {
+            "type": "string",
+            "nullable": true
+          },
+          "attendedSchoolInfoSeminar": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "locationOfSeminar": {
+            "type": "string",
+            "nullable": true
+          },
+          "signature": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "withdrawalYourPlace": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationCopy": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "certifiedCopy": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "baCertified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "transcriptDegreeProgrammes": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "currentCurriculumVitae": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          },
+          "nationality": {
+            "$ref": "#/components/schemas/Nationality"
+          },
+          "enrollmentCompany": {
+            "$ref": "#/components/schemas/EnrollmentCompany"
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuizStudentStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ShowResultView": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "CourseStatus": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "CourseCategory": {
+        "type": "object",
+        "properties": {
+          "courseCategoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "englishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "arabicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mainCourseCategoryId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "categoryImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "isTop": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "mainCourseCategory": {
+            "$ref": "#/components/schemas/CourseCategory"
+          },
+          "subCategory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseCategory"
+            },
+            "nullable": true
+          },
+          "courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Course"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentCourseStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "StudentCourses": {
+        "type": "object",
+        "properties": {
+          "studentCourseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "identificationNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "registrationNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "attendingClass": {
+            "$ref": "#/components/schemas/StudyMethod"
+          },
+          "acceptLetter": {
+            "type": "string",
+            "nullable": true
+          },
+          "acceptLetterDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "paymentDeadLine": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "payLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "intake": {
+            "type": "string",
+            "nullable": true
+          },
+          "installment": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "downpayment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "totaltuitionfees": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "scholarshipAwarded": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/StudentCourseStatus"
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProgramType": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "DayOfWeek": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ProgramTimeSetup": {
+        "type": "object",
+        "properties": {
+          "programTimeSetupId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "dayOfWeek": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          },
+          "startTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "endTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "program": {
+            "$ref": "#/components/schemas/Program"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentInProgram": {
+        "type": "object",
+        "properties": {
+          "studentInProgramId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "program": {
+            "$ref": "#/components/schemas/Program"
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SystemPage": {
+        "type": "object",
+        "properties": {
+          "systemPageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pageArabicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "pageEnglishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageURL": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentPageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentPage": {
+            "$ref": "#/components/schemas/SystemPage"
+          },
+          "subPages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SystemPage"
+            },
+            "nullable": true
+          },
+          "systemPageActions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SystemPageAction"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SystemPageAction": {
+        "type": "object",
+        "properties": {
+          "systemPageActionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "actionArabicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "actionEnglishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "actionUniqueName": {
+            "type": "string",
+            "nullable": true
+          },
+          "systemPageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "systemPage": {
+            "$ref": "#/components/schemas/SystemPage"
+          },
+          "actionsInRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActionsInRoles"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIActions": {
+        "type": "object",
+        "properties": {
+          "apiActionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "apiFrontActions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/APIFrontActions"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIFrontActions": {
+        "type": "object",
+        "properties": {
+          "apiFrontActionsId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "apiActionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "actionsInRolesId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "actionsInRoles": {
+            "$ref": "#/components/schemas/ActionsInRoles"
+          },
+          "apiActions": {
+            "$ref": "#/components/schemas/APIActions"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActionsInRoles": {
+        "type": "object",
+        "properties": {
+          "actionsInRolesId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "systemPageActionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/Role"
+          },
+          "systemPageAction": {
+            "$ref": "#/components/schemas/SystemPageAction"
+          },
+          "apiFrontActions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/APIFrontActions"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "roleArabicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleEnglishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "userRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRole"
+            },
+            "nullable": true
+          },
+          "actionsInRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActionsInRoles"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRole": {
+        "type": "object",
+        "properties": {
+          "userRoleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/Role"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DiscussionComment": {
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "discussionCommentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "discussionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "discussion": {
+            "$ref": "#/components/schemas/Discussion"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DiscussionLike": {
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "discussionLikeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "discussionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "discussion": {
+            "$ref": "#/components/schemas/Discussion"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Discussion": {
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "discussionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "programScheduleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "discussionText": {
+            "type": "string",
+            "nullable": true
+          },
+          "discussionFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "programSchedule": {
+            "$ref": "#/components/schemas/ProgramSchedule"
+          },
+          "discussionComments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DiscussionComment"
+            },
+            "nullable": true
+          },
+          "discussionLikes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DiscussionLike"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChatType": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ChatMessage": {
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "chatMessageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "chatId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "quizId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "message": {
+            "type": "string"
+          },
+          "fromStudent": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "chat": {
+            "$ref": "#/components/schemas/Chat"
+          },
+          "quiz": {
+            "$ref": "#/components/schemas/Quiz"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Chat": {
+        "type": "object",
+        "properties": {
+          "chatId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "chatType": {
+            "$ref": "#/components/schemas/ChatType"
+          },
+          "instractorId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentSeen": {
+            "type": "boolean"
+          },
+          "companySeen": {
+            "type": "boolean"
+          },
+          "programScheduleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "studentUser": {
+            "$ref": "#/components/schemas/User"
+          },
+          "instractorUser": {
+            "$ref": "#/components/schemas/User"
+          },
+          "programSchedule": {
+            "$ref": "#/components/schemas/ProgramSchedule"
+          },
+          "chatMessages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChatMessage"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmailTemplate": {
+        "type": "object",
+        "properties": {
+          "emailTemplateId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "englishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "arabicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "defaultName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "subject": {
+            "type": "string",
+            "nullable": true
+          },
+          "arabicSubject": {
+            "type": "string",
+            "nullable": true
+          },
+          "smsDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "notificationDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "notificationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "show": {
+            "type": "boolean"
+          },
+          "notificationType": {
+            "$ref": "#/components/schemas/EmailTemplateName"
+          },
+          "mailTemplateId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sendMail": {
+            "type": "boolean"
+          },
+          "sendSms": {
+            "type": "boolean"
+          },
+          "mailMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "smsMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "notificationMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "toUserId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "forAdminstration": {
+            "type": "boolean"
+          },
+          "inTime": {
+            "type": "boolean"
+          },
+          "referenceId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "mailTemplate": {
+            "$ref": "#/components/schemas/EmailTemplate"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "realTimeNotification": {
+            "type": "boolean"
+          },
+          "toUser": {
+            "$ref": "#/components/schemas/User"
+          },
+          "fromUser": {
+            "$ref": "#/components/schemas/User"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "nameAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "nameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "online": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isVerified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "userType": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "remeberMe": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "userRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRole"
+            },
+            "nullable": true
+          },
+          "programSchedules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramSchedule"
+            },
+            "nullable": true
+          },
+          "discussions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Discussion"
+            },
+            "nullable": true
+          },
+          "discussionComments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DiscussionComment"
+            },
+            "nullable": true
+          },
+          "discussionLikes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DiscussionLike"
+            },
+            "nullable": true
+          },
+          "studentUsers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Chat"
+            },
+            "nullable": true
+          },
+          "instractorUsers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Chat"
+            },
+            "nullable": true
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentLectureLog": {
+        "type": "object",
+        "properties": {
+          "studentLectureLogId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "lectureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "showLecture": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "showText": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "showVideo": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "videoPercentage": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "downloadFiles": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          },
+          "programLecture": {
+            "$ref": "#/components/schemas/ProgramLecture"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentInLecture": {
+        "type": "object",
+        "properties": {
+          "studentInLectureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "lectureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isAttend": {
+            "type": "boolean"
+          },
+          "timeIN": {
+            "type": "string",
+            "nullable": true
+          },
+          "timeOut": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalTimeIN": {
+            "type": "string",
+            "nullable": true
+          },
+          "absentReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "programLecture": {
+            "$ref": "#/components/schemas/ProgramLecture"
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentLessonLog": {
+        "type": "object",
+        "properties": {
+          "studentLessonLogId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseLessonId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "videoPercentage": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isComplete": {
+            "type": "boolean"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          },
+          "lesson": {
+            "$ref": "#/components/schemas/Lesson"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentLessonNote": {
+        "type": "object",
+        "properties": {
+          "studentLessonNoteId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "noteDetail": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "lessonId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programLectureId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "lesson": {
+            "$ref": "#/components/schemas/Lesson"
+          },
+          "programLecture": {
+            "$ref": "#/components/schemas/ProgramLecture"
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Lesson": {
+        "required": [
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "lessonId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "maxLength": 250,
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "files": {
+            "type": "string",
+            "nullable": true
+          },
+          "videoURL": {
+            "type": "string",
+            "nullable": true
+          },
+          "videoerrorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "videofailedReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "videotimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "videoprogress": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "videoStatus": {
+            "$ref": "#/components/schemas/VideoStatus"
+          },
+          "lessonIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "moduleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "module": {
+            "$ref": "#/components/schemas/Module"
+          },
+          "lessonInLectures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonInLecture"
+            },
+            "nullable": true
+          },
+          "studentLessonLogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentLessonLog"
+            },
+            "nullable": true
+          },
+          "studentLessonNotes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentLessonNote"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LessonInLecture": {
+        "type": "object",
+        "properties": {
+          "lessonInLectureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "lessonId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "lectureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "programLecture": {
+            "$ref": "#/components/schemas/ProgramLecture"
+          },
+          "lesson": {
+            "$ref": "#/components/schemas/Lesson"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProgramLecture": {
+        "required": [
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "programLectureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "maxLength": 250,
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "files": {
+            "type": "string",
+            "nullable": true
+          },
+          "videoURL": {
+            "type": "string",
+            "nullable": true
+          },
+          "meetingURL": {
+            "type": "string",
+            "nullable": true
+          },
+          "recordingURL": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "programScheduleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "isStart": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programSchedule": {
+            "$ref": "#/components/schemas/ProgramSchedule"
+          },
+          "studentLectureLogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentLectureLog"
+            },
+            "nullable": true
+          },
+          "studentInLectures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentInLecture"
+            },
+            "nullable": true
+          },
+          "lessonInLectures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonInLecture"
+            },
+            "nullable": true
+          },
+          "quizzes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Quiz"
+            },
+            "nullable": true
+          },
+          "studentLessonNotes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentLessonNote"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssignmentChat": {
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "assignmentChatId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignmentStudentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "instructorId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "messageText": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageFileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageFileSize": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentStudent": {
+            "$ref": "#/components/schemas/AssignmentStudent"
+          },
+          "instructor": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssignmentStudentHistory": {
+        "type": "object",
+        "properties": {
+          "assignmentStudentHistoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignmentStudentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignmentStudentFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentStudentAnswer": {
+            "type": "string",
+            "nullable": true
+          },
+          "reopenDeadLine": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "assignmentStudent": {
+            "$ref": "#/components/schemas/AssignmentStudent"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssignmentStudent": {
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "assignmentStudentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignmentStudentFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentStudentAnswer": {
+            "type": "string",
+            "nullable": true
+          },
+          "result": {
+            "type": "number",
+            "format": "double"
+          },
+          "startAssignmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finishAssignmentDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "reopenDeadLine": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "studentStatus": {
+            "$ref": "#/components/schemas/AssignmentStudentStatus"
+          },
+          "studentComment": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignment": {
+            "$ref": "#/components/schemas/Assignment"
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          },
+          "assignmentChats": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssignmentChat"
+            },
+            "nullable": true
+          },
+          "assignmentStudentHistories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssignmentStudentHistory"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Assignment": {
+        "required": [
+          "assignmentName"
+        ],
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "assignmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "moduleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "programScheduleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "assignmentIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AssignmentStatus"
+          },
+          "type": {
+            "$ref": "#/components/schemas/AssignmentType"
+          },
+          "assignmentName": {
+            "maxLength": 250,
+            "type": "string"
+          },
+          "assignmentFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignmentHtml": {
+            "type": "string",
+            "nullable": true
+          },
+          "publishDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "publishDeadLine": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "degree": {
+            "type": "number",
+            "format": "double"
+          },
+          "passingDegree": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "module": {
+            "$ref": "#/components/schemas/Module"
+          },
+          "programSchedule": {
+            "$ref": "#/components/schemas/ProgramSchedule"
+          },
+          "assignmentStudents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssignmentStudent"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProgramSchedule": {
+        "type": "object",
+        "properties": {
+          "programScheduleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "published": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "scheduleStartAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "scheduleEndAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "scheduleIndex": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "instractorId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "moduleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isEnableDicussion": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "module": {
+            "$ref": "#/components/schemas/Module"
+          },
+          "program": {
+            "$ref": "#/components/schemas/Program"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "programLectures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramLecture"
+            },
+            "nullable": true
+          },
+          "discussions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Discussion"
+            },
+            "nullable": true
+          },
+          "chats": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Chat"
+            },
+            "nullable": true
+          },
+          "quizzes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Quiz"
+            },
+            "nullable": true
+          },
+          "assignments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Assignment"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountingStudentProgramDetail": {
+        "type": "object",
+        "properties": {
+          "accountingStudentProgramDetailId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "accountingStudentProgramId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deadLineDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentNote": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentAttachment": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/InstallmentStatus"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "accountingStudentProgram": {
+            "$ref": "#/components/schemas/AccountingStudentProgram"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountingStudentProgram": {
+        "type": "object",
+        "properties": {
+          "accountingStudentProgramId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          },
+          "program": {
+            "$ref": "#/components/schemas/Program"
+          },
+          "accountingStudentProgramDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingStudentProgramDetail"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseDepartment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "departmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courses": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "departments": {
+            "$ref": "#/components/schemas/Departments"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseDepartmentSection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "departmentSectionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "departmentSections": {
+            "$ref": "#/components/schemas/DepartmentSections"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DepartmentSections": {
+        "type": "object",
+        "properties": {
+          "sectionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sectionName": {
+            "type": "string",
+            "nullable": true
+          },
+          "departmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "departments": {
+            "$ref": "#/components/schemas/Departments"
+          },
+          "courseDepartmentSections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseDepartmentSection"
+            },
+            "nullable": true
+          },
+          "employees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Employees"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Departments": {
+        "type": "object",
+        "properties": {
+          "departmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "departmentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "courseDepartments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseDepartment"
+            },
+            "nullable": true
+          },
+          "departmentSections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DepartmentSections"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "employees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Employees"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseRankServices": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rankServiceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courses": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "rankServices": {
+            "$ref": "#/components/schemas/RankServices"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RankServices": {
+        "type": "object",
+        "properties": {
+          "rankServiceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rankServiceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "courseRankServices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseRankServices"
+            },
+            "nullable": true
+          },
+          "employees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Employees"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Employees": {
+        "type": "object",
+        "properties": {
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "employeeNationalId": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeManagerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "managerNationalId": {
+            "type": "string",
+            "nullable": true
+          },
+          "workPlace": {
+            "type": "string",
+            "nullable": true
+          },
+          "departmentId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "departmentSectionId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "rankID": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "firstWorkDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "isManager": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isHr": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "departments": {
+            "$ref": "#/components/schemas/Departments"
+          },
+          "departmentSections": {
+            "$ref": "#/components/schemas/DepartmentSections"
+          },
+          "rankServices": {
+            "$ref": "#/components/schemas/RankServices"
+          },
+          "announcementEmployees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementEmployee"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnnouncementEmployee": {
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "announcementEmployeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "announcementId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AnnouncementEmployeeStatus"
+          },
+          "managerReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "hrReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "announcement": {
+            "$ref": "#/components/schemas/Announcement"
+          },
+          "employees": {
+            "$ref": "#/components/schemas/Employees"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Announcement": {
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "announcementId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "announcementType": {
+            "$ref": "#/components/schemas/CourseType"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "numberOfSeats": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/AnnouncementStatus"
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "program": {
+            "$ref": "#/components/schemas/Program"
+          },
+          "announcementEmployees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementEmployee"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Program": {
+        "required": [
+          "programCode",
+          "programTitle"
+        ],
+        "type": "object",
+        "properties": {
+          "programId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "programTitle": {
+            "maxLength": 250,
+            "type": "string"
+          },
+          "programCode": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ProgramType"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "isTop": {
+            "type": "boolean"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "programTimeSetups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramTimeSetup"
+            },
+            "nullable": true
+          },
+          "studentInPrograms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentInProgram"
+            },
+            "nullable": true
+          },
+          "programSchedules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramSchedule"
+            },
+            "nullable": true
+          },
+          "quizzes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Quiz"
+            },
+            "nullable": true
+          },
+          "accountingStudentPrograms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingStudentProgram"
+            },
+            "nullable": true
+          },
+          "announcements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Announcement"
+            },
+            "nullable": true
+          },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Review"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoursesCompetencies": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "competenciesId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courses": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "competencies": {
+            "$ref": "#/components/schemas/Competencies"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Competencies": {
+        "type": "object",
+        "properties": {
+          "competenciesId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "competenciesName": {
+            "type": "string",
+            "nullable": true
+          },
+          "competenciesNameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/CompetencyStatus"
+          },
+          "isDelete": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "coursesCompetencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoursesCompetencies"
+            },
+            "nullable": true
+          },
+          "skillsCompetences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SkillsCompetence"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SkillsCompetence": {
+        "type": "object",
+        "properties": {
+          "skillsCompetenceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "skillsCompetenceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "skillsCompetenceNameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/CompetencyStatus"
+          },
+          "isDelete": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "competenciesId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "competencies": {
+            "$ref": "#/components/schemas/Competencies"
+          },
+          "courseSkillsCompetence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseSkillsCompetence"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseSkillsCompetence": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "skillsCompetenceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courses": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "skillsCompetence": {
+            "$ref": "#/components/schemas/SkillsCompetence"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompetencyLevel": {
+        "type": "object",
+        "properties": {
+          "competencyLevelId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "competencyLevelName": {
+            "type": "string",
+            "nullable": true
+          },
+          "coursesCompetencyLevels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoursesCompetencyLevels"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoursesCompetencyLevels": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "competencyLevelId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courses": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "competencyLevel": {
+            "$ref": "#/components/schemas/CompetencyLevel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "organizationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "organizationReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Course"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RequiredInCourse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "requiredCourseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RequiredOtherCourse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "otherCourse": {
+            "type": "string",
+            "nullable": true
+          },
+          "courses": {
+            "$ref": "#/components/schemas/Course"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Course": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "requirment": {
+            "type": "string",
+            "nullable": true
+          },
+          "shortDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "objective": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/CourseType"
+          },
+          "longDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
+          "subCategoryId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "level": {
+            "$ref": "#/components/schemas/CourseLevel"
+          },
+          "isTop": {
+            "type": "boolean"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "seoMetaDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "seoTags": {
+            "type": "string",
+            "nullable": true
+          },
+          "isFree": {
+            "type": "boolean"
+          },
+          "mainPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "specialPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "specialValidTill": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "courseImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "essentialViewing": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "courseVideoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "videoPercentageSetting": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/CourseStatus"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "courseCategory": {
+            "$ref": "#/components/schemas/CourseCategory"
+          },
+          "studentCourses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentCourses"
+            },
+            "nullable": true
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Module"
+            },
+            "nullable": true
+          },
+          "programs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Program"
+            },
+            "nullable": true
+          },
+          "courseDepartments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseDepartment"
+            },
+            "nullable": true
+          },
+          "courseSkillsCompetences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseSkillsCompetence"
+            },
+            "nullable": true
+          },
+          "courseRankServices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseRankServices"
+            },
+            "nullable": true
+          },
+          "coursesCompetencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoursesCompetencies"
+            },
+            "nullable": true
+          },
+          "coursesCompetencyLevels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoursesCompetencyLevels"
+            },
+            "nullable": true
+          },
+          "organization": {
+            "$ref": "#/components/schemas/Organization"
+          },
+          "requiredInCourses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequiredInCourse"
+            },
+            "nullable": true
+          },
+          "requiredOtherCourses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequiredOtherCourse"
+            },
+            "nullable": true
+          },
+          "announcements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Announcement"
+            },
+            "nullable": true
+          },
+          "courseDepartmentSections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseDepartmentSection"
+            },
+            "nullable": true
+          },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Review"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuestionBankAnswer": {
+        "type": "object",
+        "properties": {
+          "questionBankAnswerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "questionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "answerText": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCorrect": {
+            "type": "boolean"
+          },
+          "questionBank": {
+            "$ref": "#/components/schemas/QuestionBank"
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuestionBank": {
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "moduleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "questionText": {
+            "type": "string",
+            "nullable": true
+          },
+          "questionImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "questionHtml": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/QuestionType"
+          },
+          "module": {
+            "$ref": "#/components/schemas/Module"
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionBankAnswer"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Module": {
+        "required": [
+          "code",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "maxLength": 250,
+            "type": "string"
+          },
+          "code": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "topic": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "moduleIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Lesson"
+            },
+            "nullable": true
+          },
+          "quizs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Quiz"
+            },
+            "nullable": true
+          },
+          "assignments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Assignment"
+            },
+            "nullable": true
+          },
+          "questionBanks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionBank"
+            },
+            "nullable": true
+          },
+          "programSchedules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramSchedule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuestionAnswer": {
+        "type": "object",
+        "properties": {
+          "questionAnswerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "questionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "answerText": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCorrect": {
+            "type": "boolean"
+          },
+          "question": {
+            "$ref": "#/components/schemas/QuizQuestion"
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuizQuestion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "quizId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "questionText": {
+            "type": "string",
+            "nullable": true
+          },
+          "questionHtml": {
+            "type": "string",
+            "nullable": true
+          },
+          "questionImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/QuestionType"
+          },
+          "questionIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quiz": {
+            "$ref": "#/components/schemas/Quiz"
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionAnswer"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Quiz": {
+        "required": [
+          "quizName"
+        ],
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "quizName": {
+            "maxLength": 250,
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "trialsNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "timeLimit": {
+            "type": "number",
+            "format": "double"
+          },
+          "passingScore": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "showResultView": {
+            "$ref": "#/components/schemas/ShowResultView"
+          },
+          "randomQuestion": {
+            "type": "boolean"
+          },
+          "topResult": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "deadlineDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "publishDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "masterQuizID": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "moduleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "moduleIndex": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programScheduleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programLectureId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "module": {
+            "$ref": "#/components/schemas/Module"
+          },
+          "program": {
+            "$ref": "#/components/schemas/Program"
+          },
+          "programSchedule": {
+            "$ref": "#/components/schemas/ProgramSchedule"
+          },
+          "programLecture": {
+            "$ref": "#/components/schemas/ProgramLecture"
+          },
+          "masterQuiz": {
+            "$ref": "#/components/schemas/Quiz"
+          },
+          "subQuizs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Quiz"
+            },
+            "nullable": true
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuizQuestion"
+            },
+            "nullable": true
+          },
+          "quizStudents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuizStudent"
+            },
+            "nullable": true
+          },
+          "chatMessages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChatMessage"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentQuestionAnswer": {
+        "type": "object",
+        "properties": {
+          "studentQuestionAnswerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "quizStudentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "questionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "answerId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isCorrect": {
+            "type": "boolean"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuizStudent": {
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "quizId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/QuizStudentStatus"
+          },
+          "result": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "startQuizDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finishQuizDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "trialNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quiz": {
+            "$ref": "#/components/schemas/Quiz"
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentQuestionAnswer"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Student": {
+        "type": "object",
+        "properties": {
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "englishFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "arabicFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "englishFamilyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "arabicFamilyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "englishFullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "arabicFullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobile": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "nationalIDImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "cvpdf": {
+            "type": "string",
+            "nullable": true
+          },
+          "universityDegreeCert": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationForm": {
+            "type": "string",
+            "nullable": true
+          },
+          "baCertificate": {
+            "type": "string",
+            "nullable": true
+          },
+          "ieltsCertificate": {
+            "type": "string",
+            "nullable": true
+          },
+          "regphaseNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "$ref": "#/components/schemas/StudentStatus"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "completeRegistration": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "studyMethod": {
+            "$ref": "#/components/schemas/StudyMethod"
+          },
+          "registrationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "induction": {
+            "type": "boolean"
+          },
+          "mainQuizId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "studentDetail": {
+            "$ref": "#/components/schemas/StudentDetail"
+          },
+          "quizStudents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuizStudent"
+            },
+            "nullable": true
+          },
+          "studentCourses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentCourses"
+            },
+            "nullable": true
+          },
+          "studentInPrograms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentInProgram"
+            },
+            "nullable": true
+          },
+          "studentInLectures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentInLecture"
+            },
+            "nullable": true
+          },
+          "studentLessonLogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentLessonLog"
+            },
+            "nullable": true
+          },
+          "studentLectureLogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentLectureLog"
+            },
+            "nullable": true
+          },
+          "studentLessonNotes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentLessonNote"
+            },
+            "nullable": true
+          },
+          "assignmentStudents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssignmentStudent"
+            },
+            "nullable": true
+          },
+          "accountingStudentPrograms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingStudentProgram"
+            },
+            "nullable": true
+          },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Review"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Review": {
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "creationUser": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modificationUser": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "reviewId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "reviewContent": {
+            "type": "string",
+            "nullable": true
+          },
+          "rate": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "program": {
+            "$ref": "#/components/schemas/Program"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReviewPagedOutput": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Review"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReviewPagedOutputSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "$ref": "#/components/schemas/ReviewPagedOutput"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReviewInputDTO": {
+        "type": "object",
+        "properties": {
+          "reviewId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "reviewContent": {
+            "type": "string",
+            "nullable": true
+          },
+          "rate": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "RoleActionFilterByTextInputViewModel": {
         "type": "object",
         "properties": {
@@ -31348,35 +36468,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "StudentStatus": {
-        "enum": [
-          0,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14
-        ],
-        "type": "integer",
-        "format": "int32"
-      },
-      "StudyMethod": {
-        "enum": [
-          1,
-          2,
-          3
-        ],
-        "type": "integer",
-        "format": "int32"
       },
       "StudentViewModel": {
         "type": "object",
@@ -32245,15 +37336,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "EnrollmentType": {
-        "enum": [
-          0,
-          1,
-          2
-        ],
-        "type": "integer",
-        "format": "int32"
       },
       "ProgramForStudent": {
         "type": "object",

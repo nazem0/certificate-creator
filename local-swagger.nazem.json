@@ -5,7 +5,7 @@
     "version": "v1"
   },
   "paths": {
-    "/api/SignUp": {
+    "/SignUp": {
       "post": {
         "tags": [
           "Authentication"
@@ -133,7 +133,7 @@
         }
       }
     },
-    "/api/SignIn": {
+    "/SignIn": {
       "post": {
         "tags": [
           "Authentication"
@@ -212,7 +212,7 @@
         }
       }
     },
-    "/api/ForgetPassword": {
+    "/ForgetPassword": {
       "post": {
         "tags": [
           "Authentication"
@@ -275,7 +275,7 @@
         }
       }
     },
-    "/api/ResetPassword": {
+    "/ResetPassword": {
       "post": {
         "tags": [
           "Authentication"
@@ -354,7 +354,7 @@
         }
       }
     },
-    "/api/CreateTeam": {
+    "/CreateTeam": {
       "post": {
         "tags": [
           "TeamAndIndividual"
@@ -477,7 +477,7 @@
         }
       }
     },
-    "/api/GetUserSports": {
+    "/GetUserSports": {
       "get": {
         "tags": [
           "TeamAndIndividual"
@@ -527,7 +527,7 @@
         }
       }
     },
-    "/api/GetTeamsBySportAndSportTypeId": {
+    "/GetTeamsBySportAndSportTypeId": {
       "get": {
         "tags": [
           "TeamAndIndividual"
@@ -599,7 +599,7 @@
         }
       }
     },
-    "/api/GetTeamById": {
+    "/GetTeamById": {
       "get": {
         "tags": [
           "TeamAndIndividual"
@@ -661,7 +661,7 @@
         }
       }
     },
-    "/api/GetPlayers": {
+    "/GetPlayers": {
       "get": {
         "tags": [
           "TeamAndIndividual"
@@ -723,7 +723,7 @@
         }
       }
     },
-    "/api/DeleteTeam": {
+    "/DeleteTeam": {
       "delete": {
         "tags": [
           "TeamAndIndividual"
@@ -785,7 +785,7 @@
         }
       }
     },
-    "/api/GetPlayerById": {
+    "/GetPlayerById": {
       "get": {
         "tags": [
           "TeamAndIndividual"

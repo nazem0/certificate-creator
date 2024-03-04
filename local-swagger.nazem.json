@@ -846,6 +846,146 @@
           }
         }
       }
+    },
+    "/UpdatePlayer": {
+      "put": {
+        "tags": [
+          "TeamAndIndividual"
+        ],
+        "summary": "Update player",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "DateOfBirth",
+                  "Email",
+                  "Gender",
+                  "Name",
+                  "PlayerId"
+                ],
+                "type": "object",
+                "properties": {
+                  "PlayerId": {
+                    "type": "string"
+                  },
+                  "NationalId": {
+                    "type": "string"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "PhoneNumber": {
+                    "type": "string"
+                  },
+                  "DateOfBirth": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "Email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "Gender": {
+                    "$ref": "#/components/schemas/Gender"
+                  },
+                  "NationalIdImage": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "NationalIdImageUrl": {
+                    "type": "string"
+                  },
+                  "PersonalImage": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "PersonalImageUrl": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "PlayerId": {
+                  "style": "form"
+                },
+                "NationalId": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "PhoneNumber": {
+                  "style": "form"
+                },
+                "DateOfBirth": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "Gender": {
+                  "style": "form"
+                },
+                "NationalIdImage": {
+                  "style": "form"
+                },
+                "NationalIdImageUrl": {
+                  "style": "form"
+                },
+                "PersonalImage": {
+                  "style": "form"
+                },
+                "PersonalImageUrl": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringAPIResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringAPIResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringAPIResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringAPIResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringAPIResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringAPIResult"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -879,7 +1019,7 @@
           },
           "dateOfBirth": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
           "email": {
             "type": "string",

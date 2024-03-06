@@ -18278,17 +18278,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/FileContentResultSwaggerOutput"
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FileContentResultSwaggerOutput"
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FileContentResultSwaggerOutput"
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
                 }
               }
             }
@@ -33765,28 +33765,6 @@
           "installment": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "FileContentResultSwaggerOutput": {
-        "type": "object",
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "ok": {
-            "type": "boolean"
-          },
-          "result": {
-            "type": "string",
-            "format": "binary",
             "nullable": true
           }
         },

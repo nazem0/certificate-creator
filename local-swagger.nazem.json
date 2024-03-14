@@ -3444,6 +3444,51 @@
         }
       }
     },
+    "/api/CertificationTemplate": {
+      "get": {
+        "tags": [
+          "CertificationTemplate"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatListViewModelListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatListViewModelListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatListViewModelListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Chat/HasUnReadMessage": {
       "get": {
         "tags": [
@@ -5443,6 +5488,75 @@
         }
       }
     },
+    "/api/Course/UpdateCourseCertificate": {
+      "put": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseCertificateViewModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseCertificateViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseCertificateViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseCertificateViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Course/UpdateSeo": {
       "put": {
         "tags": [
@@ -6172,11 +6286,26 @@
         ],
         "parameters": [
           {
-            "name": "CategoryId",
+            "name": "Categories",
             "in": "query",
             "schema": {
-              "type": "string",
-              "format": "uuid",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "nullable": true
+            }
+          },
+          {
+            "name": "Instructors",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
               "nullable": true
             }
           },
@@ -6200,6 +6329,18 @@
             "in": "query",
             "schema": {
               "$ref": "#/components/schemas/CourseType"
+            }
+          },
+          {
+            "name": "Rate",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "nullable": true
             }
           },
           {
@@ -11147,6 +11288,86 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ModuleStudentDetailSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Modules/ScheduleAndModule": {
+      "get": {
+        "tags": [
+          "Modules"
+        ],
+        "parameters": [
+          {
+            "name": "StudentId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "name": "ModuleId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "name": "ScheduleId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "name": "IsFinishOnly",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleModuleVMIEnumerableSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleModuleVMIEnumerableSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleModuleVMIEnumerableSwaggerOutput"
                 }
               }
             }
@@ -19152,6 +19373,255 @@
         }
       }
     },
+    "/api/StudentAdmin/StudentCertifications": {
+      "get": {
+        "tags": [
+          "StudentAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "SearchText",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "CourseId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "name": "ProgramId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "name": "CertificationStatus",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortBy",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "IsSortAscending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentCertificationListPagedOutputSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentCertificationListPagedOutputSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentCertificationListPagedOutputSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/StudentAdmin/StudentCertificationApprove": {
+      "put": {
+        "tags": [
+          "StudentAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentsCertificationApprve"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentsCertificationApprve"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentsCertificationApprve"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentsCertificationApprve"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/StudentAdmin/StudentCertificationNewVersion": {
+      "get": {
+        "tags": [
+          "StudentAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentsCertificationInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentsCertificationInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentsCertificationInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentsCertificationInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/StudentCourses/UpdateStatus": {
       "post": {
         "tags": [
@@ -19259,6 +19729,67 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EnumModelSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/StudentCourses/StudentCertificate": {
+      "get": {
+        "tags": [
+          "StudentCourses"
+        ],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "studentId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
                 }
               }
             }
@@ -19523,6 +20054,67 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/StudentInProgram/StudentCertificate": {
+      "get": {
+        "tags": [
+          "StudentInProgram"
+        ],
+        "parameters": [
+          {
+            "name": "programId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "studentId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ByteArraySwaggerOutput"
                 }
               }
             }
@@ -21439,6 +22031,66 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Students/StudentCertificationDetail": {
+      "get": {
+        "tags": [
+          "Students"
+        ],
+        "parameters": [
+          {
+            "name": "StudentInProgramId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "selfstudy",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentCertificationDetailSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentCertificationDetailSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentCertificationDetailSwaggerOutput"
                 }
               }
             }
@@ -25099,7 +25751,8 @@
           1,
           2,
           3,
-          4
+          4,
+          5
         ],
         "type": "integer",
         "format": "int32"
@@ -26497,26 +27150,6 @@
         },
         "additionalProperties": false
       },
-      "BooleanSwaggerOutput": {
-        "type": "object",
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "ok": {
-            "type": "boolean"
-          },
-          "result": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
       "ChatListViewModel": {
         "type": "object",
         "properties": {
@@ -26566,6 +27199,26 @@
               "$ref": "#/components/schemas/ChatListViewModel"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BooleanSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -27017,6 +27670,16 @@
             },
             "nullable": true
           },
+          "certificateTemplate": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "isNeedApprove": {
+            "type": "boolean"
+          },
           "shortDescription": {
             "type": "string",
             "nullable": true
@@ -27329,6 +27992,10 @@
           },
           "reviewStats": {
             "$ref": "#/components/schemas/ReviewStats"
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -27720,6 +28387,23 @@
         },
         "additionalProperties": false
       },
+      "CourseCertificateViewModel": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "certificationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isNeedApprove": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
       "CourseSeoInputViewModel": {
         "type": "object",
         "properties": {
@@ -27827,6 +28511,15 @@
             "type": "string",
             "format": "uuid"
           },
+          "categoryId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
           "name": {
             "type": "string",
             "nullable": true
@@ -27885,6 +28578,10 @@
           "reviewsCount": {
             "type": "integer",
             "format": "int32"
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -30406,6 +31103,65 @@
         },
         "additionalProperties": false
       },
+      "ScheduleModuleVM": {
+        "type": "object",
+        "properties": {
+          "courseName": {
+            "type": "string",
+            "nullable": true
+          },
+          "programName": {
+            "type": "string",
+            "nullable": true
+          },
+          "moduleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "instructorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isFinish": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleModuleVMIEnumerableSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduleModuleVM"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "NationalityViewModel": {
         "type": "object",
         "properties": {
@@ -31157,6 +31913,10 @@
           "reviewsCount": {
             "type": "integer",
             "format": "int32"
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -31220,6 +31980,10 @@
           "endDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -33239,7 +34003,8 @@
           11,
           12,
           13,
-          14
+          14,
+          15
         ],
         "type": "integer",
         "format": "int32"
@@ -34492,6 +35257,139 @@
         },
         "additionalProperties": false
       },
+      "CertificationStatus": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "StudentCertificationList": {
+        "type": "object",
+        "properties": {
+          "studentInProgramId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "registrationNumer": {
+            "type": "string",
+            "nullable": true
+          },
+          "programName": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "mobile": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "selfstudy": {
+            "type": "boolean"
+          },
+          "certificationStatusNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "certificationStatus": {
+            "$ref": "#/components/schemas/CertificationStatus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentCertificationListPagedOutput": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentCertificationList"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentCertificationListPagedOutputSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "$ref": "#/components/schemas/StudentCertificationListPagedOutput"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentsCertificationApprve": {
+        "type": "object",
+        "properties": {
+          "studentInProgramId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "selfstudy": {
+            "type": "boolean"
+          },
+          "outCertification": {
+            "$ref": "#/components/schemas/PuzzleFileInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentsCertificationInput": {
+        "type": "object",
+        "properties": {
+          "studentInProgramId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "selfstudy": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
       "StudentCoursesStatusViewInputModel": {
         "type": "object",
         "properties": {
@@ -35418,6 +36316,15 @@
           },
           "inClassCourse": {
             "type": "boolean"
+          },
+          "certification": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentCertificationId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -36171,6 +37078,106 @@
           },
           "result": {
             "$ref": "#/components/schemas/QuizStudentInClassListPagedOutput"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentCertificationDetail": {
+        "type": "object",
+        "properties": {
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "programImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "programName": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentMobile": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "modulesNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lecturesNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quizNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "assignmentNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "rate": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "certificationURL": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificationStatusNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "certificationStatus": {
+            "$ref": "#/components/schemas/CertificationStatus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentCertificationDetailSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "$ref": "#/components/schemas/StudentCertificationDetail"
           }
         },
         "additionalProperties": false

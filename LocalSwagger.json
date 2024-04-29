@@ -24851,37 +24851,6 @@
         ],
         "parameters": [
           {
-            "name": "PageNumber",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "SortBy",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "IsSortAscending",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
             "name": "language",
             "in": "header",
             "description": "ar for Arabic or en for English",
@@ -24902,17 +24871,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelPagedOutputSwaggerOutput"
+                  "$ref": "#/components/schemas/StudentStatusViewModelListSwaggerOutput"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelPagedOutputSwaggerOutput"
+                  "$ref": "#/components/schemas/StudentStatusViewModelListSwaggerOutput"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelPagedOutputSwaggerOutput"
+                  "$ref": "#/components/schemas/StudentStatusViewModelListSwaggerOutput"
                 }
               }
             }
@@ -41588,11 +41557,6 @@
             "type": "string",
             "format": "uuid"
           },
-          "previousStudentStatusId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
           "isSystematic": {
             "type": "boolean"
           },
@@ -41607,35 +41571,15 @@
             "type": "string",
             "nullable": true
           },
-          "previousStudentStatusArabicName": {
+          "previousStudentStatusId": {
             "type": "string",
-            "nullable": true
-          },
-          "previousStudentStatusEnglishName": {
-            "type": "string",
+            "format": "uuid",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "StudentStatusViewModelPagedOutput": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "result": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StudentStatusViewModel"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "StudentStatusViewModelPagedOutputSwaggerOutput": {
+      "StudentStatusViewModelListSwaggerOutput": {
         "type": "object",
         "properties": {
           "statusCode": {
@@ -41650,7 +41594,11 @@
             "type": "boolean"
           },
           "result": {
-            "$ref": "#/components/schemas/StudentStatusViewModelPagedOutput"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentStatusViewModel"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

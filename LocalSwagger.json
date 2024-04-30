@@ -25185,6 +25185,51 @@
         }
       }
     },
+    "/api/StudentStatus/GetSequentialStudentStatusList": {
+      "get": {
+        "tags": [
+          "StudentStatus"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SequentialStudentStatusViewModelListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SequentialStudentStatusViewModelListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SequentialStudentStatusViewModelListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/SystemPageActions/filter": {
       "post": {
         "tags": [
@@ -41671,6 +41716,66 @@
           "studentStatusId": {
             "type": "string",
             "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SequentialStudentStatusViewModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isSystematic": {
+            "type": "boolean"
+          },
+          "isBlocking": {
+            "type": "boolean"
+          },
+          "arabicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "englishName": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousStudentStatusId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "nextStudentStatusList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SequentialStudentStatusViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SequentialStudentStatusViewModelListSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SequentialStudentStatusViewModel"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

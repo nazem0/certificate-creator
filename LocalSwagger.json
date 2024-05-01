@@ -38657,6 +38657,18 @@
           "email": {
             "type": "string",
             "nullable": true
+          },
+          "studentStatusId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentStatusArabicName": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentStatusEnglishName": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

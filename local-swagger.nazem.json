@@ -25221,7 +25221,7 @@
         }
       }
     },
-    "/api/SystemPages/ByRole": {
+    "/api/SystemPages/MySystemPages": {
       "get": {
         "tags": [
           "SystemPages"

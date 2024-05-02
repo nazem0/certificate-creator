@@ -22725,6 +22725,75 @@
         }
       }
     },
+    "/api/StudentInProgram/ActivateStudent": {
+      "post": {
+        "tags": [
+          "StudentInProgram"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentInProgramInPutViewModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentInProgramInPutViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentInProgramInPutViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentInProgramInPutViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/StudentInProgram/DeleteStudentInProgram": {
       "post": {
         "tags": [
@@ -24770,459 +24839,6 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StudentCertificationDetailSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/StudentStatus": {
-      "post": {
-        "tags": [
-          "StudentStatus"
-        ],
-        "parameters": [
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateStudentStatusViewModel"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateStudentStatusViewModel"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateStudentStatusViewModel"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateStudentStatusViewModel"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "StudentStatus"
-        ],
-        "parameters": [
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelListSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelListSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelListSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "StudentStatus"
-        ],
-        "parameters": [
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateStudentStatusViewModel"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateStudentStatusViewModel"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateStudentStatusViewModel"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateStudentStatusViewModel"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "StudentStatus"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/StudentStatus/{studentStatusId}": {
-      "get": {
-        "tags": [
-          "StudentStatus"
-        ],
-        "parameters": [
-          {
-            "name": "studentStatusId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/StudentStatus/AssignStatusToStudent": {
-      "put": {
-        "tags": [
-          "StudentStatus"
-        ],
-        "parameters": [
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AssignStatusToStudentDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AssignStatusToStudentDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AssignStatusToStudentDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AssignStatusToStudentDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/StudentStatus/ByStudentId/{studentId}": {
-      "get": {
-        "tags": [
-          "StudentStatus"
-        ],
-        "parameters": [
-          {
-            "name": "studentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudentStatusViewModelSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/StudentStatus/GetSequentialStudentStatusList": {
-      "get": {
-        "tags": [
-          "StudentStatus"
-        ],
-        "parameters": [
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/SequentialStudentStatusViewModelListSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SequentialStudentStatusViewModelListSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SequentialStudentStatusViewModelListSwaggerOutput"
                 }
               }
             }
@@ -27857,7 +27473,8 @@
           12,
           13,
           14,
-          15
+          15,
+          16
         ],
         "type": "integer",
         "format": "int32"
@@ -35561,7 +35178,8 @@
           62,
           63,
           64,
-          65
+          65,
+          66
         ],
         "type": "integer",
         "format": "int32"
@@ -35829,6 +35447,11 @@
           "published": {
             "type": "boolean"
           },
+          "numberOfAbsence": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "programCode": {
             "type": "string",
             "nullable": true
@@ -35917,6 +35540,11 @@
           },
           "published": {
             "type": "boolean"
+          },
+          "numberOfAbsence": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           },
           "timeSetupInputViewModels": {
             "type": "array",
@@ -38411,7 +38039,7 @@
         },
         "additionalProperties": false
       },
-      "StudentStatusEnum": {
+      "StudentStatus": {
         "enum": [
           0,
           2,
@@ -38505,7 +38133,7 @@
             "format": "int32"
           },
           "status": {
-            "$ref": "#/components/schemas/StudentStatusEnum"
+            "$ref": "#/components/schemas/StudentStatus"
           },
           "isActive": {
             "type": "boolean"
@@ -38700,18 +38328,6 @@
             "nullable": true
           },
           "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "studentStatusId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "studentStatusArabicName": {
-            "type": "string",
-            "nullable": true
-          },
-          "studentStatusEnglishName": {
             "type": "string",
             "nullable": true
           }
@@ -39397,7 +39013,7 @@
             "format": "int32"
           },
           "status": {
-            "$ref": "#/components/schemas/StudentStatusEnum"
+            "$ref": "#/components/schemas/StudentStatus"
           },
           "programForStudents": {
             "type": "array",
@@ -39987,6 +39603,10 @@
             "nullable": true
           },
           "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentInProgramStatus": {
             "type": "string",
             "nullable": true
           }
@@ -41619,236 +41239,6 @@
           },
           "result": {
             "$ref": "#/components/schemas/StudentCertificationDetail"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CreateStudentStatusViewModel": {
-        "required": [
-          "arabicName",
-          "englishName",
-          "isBlocking",
-          "isSystematic"
-        ],
-        "type": "object",
-        "properties": {
-          "arabicName": {
-            "type": "string"
-          },
-          "englishName": {
-            "type": "string"
-          },
-          "isSystematic": {
-            "type": "boolean"
-          },
-          "isBlocking": {
-            "type": "boolean"
-          },
-          "previousStudentStatusId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "StudentStatusViewModel": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isSystematic": {
-            "type": "boolean"
-          },
-          "isBlocking": {
-            "type": "boolean"
-          },
-          "arabicName": {
-            "type": "string",
-            "nullable": true
-          },
-          "englishName": {
-            "type": "string",
-            "nullable": true
-          },
-          "previousStudentStatusId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "previousStudentStatusArabicName": {
-            "type": "string",
-            "nullable": true
-          },
-          "previousStudentStatusEnglishName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "StudentStatusViewModelListSwaggerOutput": {
-        "type": "object",
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "ok": {
-            "type": "boolean"
-          },
-          "result": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StudentStatusViewModel"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UpdateStudentStatusViewModel": {
-        "required": [
-          "id"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "arabicName": {
-            "type": "string",
-            "nullable": true
-          },
-          "englishName": {
-            "type": "string",
-            "nullable": true
-          },
-          "isSystematic": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "isBlocking": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "previousStudentStatusId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "StudentStatusViewModelSwaggerOutput": {
-        "type": "object",
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "ok": {
-            "type": "boolean"
-          },
-          "result": {
-            "$ref": "#/components/schemas/StudentStatusViewModel"
-          }
-        },
-        "additionalProperties": false
-      },
-      "AssignStatusToStudentDto": {
-        "required": [
-          "studentId",
-          "studentStatusId"
-        ],
-        "type": "object",
-        "properties": {
-          "studentId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "studentStatusId": {
-            "type": "string",
-            "format": "uuid"
-          }
-        },
-        "additionalProperties": false
-      },
-      "SequentialStudentStatusViewModel": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isSystematic": {
-            "type": "boolean"
-          },
-          "isBlocking": {
-            "type": "boolean"
-          },
-          "arabicName": {
-            "type": "string",
-            "nullable": true
-          },
-          "englishName": {
-            "type": "string",
-            "nullable": true
-          },
-          "previousStudentStatusId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "previousStudentStatusArabicName": {
-            "type": "string",
-            "nullable": true
-          },
-          "previousStudentStatusEnglishName": {
-            "type": "string",
-            "nullable": true
-          },
-          "nextStudentStatusList": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SequentialStudentStatusViewModel"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SequentialStudentStatusViewModelListSwaggerOutput": {
-        "type": "object",
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "ok": {
-            "type": "boolean"
-          },
-          "result": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SequentialStudentStatusViewModel"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false

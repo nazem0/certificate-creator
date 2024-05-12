@@ -23859,6 +23859,15 @@
             }
           },
           {
+            "name": "StudentId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          {
             "name": "language",
             "in": "header",
             "description": "ar for Arabic or en for English",
@@ -31108,6 +31117,11 @@
           },
           "isTop": {
             "type": "boolean"
+          },
+          "courseDays": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -31959,6 +31973,10 @@
             "nullable": true
           },
           "discussionFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileExtension": {
             "type": "string",
             "nullable": true
           },

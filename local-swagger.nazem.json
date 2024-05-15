@@ -30334,6 +30334,9 @@
         "additionalProperties": false
       },
       "CompetenciesInputVM": {
+        "required": [
+          "competenciesName"
+        ],
         "type": "object",
         "properties": {
           "competenciesId": {
@@ -30342,8 +30345,7 @@
             "nullable": true
           },
           "competenciesName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "competenciesNameEn": {
             "type": "string",
@@ -30519,6 +30521,10 @@
         "additionalProperties": false
       },
       "OrganizationVM": {
+        "required": [
+          "organizationName",
+          "organizationReference"
+        ],
         "type": "object",
         "properties": {
           "organizationId": {
@@ -30527,12 +30533,10 @@
             "nullable": true
           },
           "organizationName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "organizationReference": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "description": {
             "type": "string",
@@ -32059,6 +32063,10 @@
             "nullable": true
           },
           "discussionFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileExtension": {
             "type": "string",
             "nullable": true
           },
@@ -40356,6 +40364,11 @@
           "quizResult": {
             "type": "number",
             "format": "double",
+            "nullable": true
+          },
+          "trialsNumber": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "hasSession": {

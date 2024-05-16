@@ -40366,11 +40366,6 @@
             "format": "double",
             "nullable": true
           },
-          "quizTrialsNumber": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "hasSession": {
             "type": "boolean"
           },

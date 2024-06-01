@@ -6248,6 +6248,51 @@
         }
       }
     },
+    "/api/Course/GetCourseForProgramDropDown": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseDDViewModelListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseDDViewModelListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseDDViewModelListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Course/GetCourseForProgram": {
       "get": {
         "tags": [
@@ -14925,6 +14970,14 @@
             }
           },
           {
+            "name": "ProgramName",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
             "name": "CourseId",
             "in": "query",
             "schema": {
@@ -16298,59 +16351,6 @@
         "parameters": [
           {
             "name": "Id",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/StringSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StringSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StringSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/ProgramLecture/StartScheduleFirstLecture": {
-      "post": {
-        "tags": [
-          "ProgramLecture"
-        ],
-        "parameters": [
-          {
-            "name": "ScheduleId",
             "in": "query",
             "schema": {
               "type": "string",
@@ -28649,7 +28649,7 @@
         "properties": {
           "competencyLevelId": {
             "type": "string",
-            "nullable": true
+            "format": "uuid"
           },
           "competencyLevelName": {
             "type": "string",
@@ -34628,20 +34628,20 @@
             "type": "string",
             "nullable": true
           },
-          "videoerrorCode": {
+          "videoErrorCode": {
             "type": "string",
             "nullable": true
           },
-          "videofailedReason": {
+          "videoFailedReason": {
             "type": "string",
             "nullable": true
           },
-          "videotimestamp": {
+          "videoTimestamp": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           },
-          "videoprogress": {
+          "videoPercentage": {
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -36328,10 +36328,6 @@
             "type": "string",
             "nullable": true
           },
-          "totalTimeIN": {
-            "type": "string",
-            "nullable": true
-          },
           "absentReason": {
             "type": "string",
             "nullable": true
@@ -36712,7 +36708,10 @@
       "QuestionType": {
         "enum": [
           1,
-          2
+          2,
+          3,
+          4,
+          5
         ],
         "type": "integer",
         "format": "int32"
@@ -36959,12 +36958,45 @@
             "format": "uuid",
             "nullable": true
           },
+          "answerImage": {
+            "$ref": "#/components/schemas/PuzzleFileInfo"
+          },
           "answerText": {
             "type": "string",
             "nullable": true
           },
           "isCorrect": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FillBlankMatchVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "parentQuestionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "questionText": {
+            "type": "string",
+            "nullable": true
+          },
+          "answerText": {
+            "type": "string",
+            "nullable": true
+          },
+          "index": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "studentAnswer": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -37000,16 +37032,33 @@
             "$ref": "#/components/schemas/QuestionType"
           },
           "isCorrect": {
-            "type": "boolean"
+            "type": "number",
+            "format": "double"
+          },
+          "totalQuestionCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           },
           "answerId": {
-            "type": "string",
-            "format": "uuid"
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
           },
           "answers": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/QuestionAnswerVM"
+            },
+            "nullable": true
+          },
+          "fillBlankMatchQuestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FillBlankMatchVM"
             },
             "nullable": true
           }
@@ -37150,8 +37199,15 @@
             "format": "uuid"
           },
           "answerId": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "answer": {
             "type": "string",
-            "format": "uuid",
             "nullable": true
           },
           "isLast": {
@@ -37321,6 +37377,13 @@
               "$ref": "#/components/schemas/QuestionAnswerVM"
             },
             "nullable": true
+          },
+          "fillBlankMatchQuestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FillBlankMatchVM"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -37443,6 +37506,30 @@
         },
         "additionalProperties": false
       },
+      "AnswerMatchesVM": {
+        "type": "object",
+        "properties": {
+          "answer": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuestionMatchesOrFillBlankVM": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "nullable": true
+          },
+          "answer": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AddQuizQuestionViewModel": {
         "type": "object",
         "properties": {
@@ -37483,6 +37570,27 @@
           },
           "addToQuestionBank": {
             "type": "boolean",
+            "nullable": true
+          },
+          "answerMatches": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnswerMatchesVM"
+            },
+            "nullable": true
+          },
+          "questionMatches": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionMatchesOrFillBlankVM"
+            },
+            "nullable": true
+          },
+          "fillBlank": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionMatchesOrFillBlankVM"
+            },
             "nullable": true
           }
         },
@@ -38391,6 +38499,10 @@
           },
           "newIELTSCertificate": {
             "$ref": "#/components/schemas/PuzzleFileInfo"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -40701,6 +40813,10 @@
           "lessonId": {
             "type": "string",
             "format": "uuid"
+          },
+          "videoPercentage": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

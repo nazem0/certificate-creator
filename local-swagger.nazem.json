@@ -30555,22 +30555,12 @@
             "type": "string",
             "format": "uuid"
           },
-          "arabicName": {
+          "name": {
             "type": "string",
             "nullable": true
           },
-          "englishName": {
+          "code": {
             "type": "string",
-            "nullable": true
-          },
-          "pagesCount": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "usersCount": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           }
         },
@@ -35303,26 +35293,12 @@
             "type": "integer",
             "format": "int32"
           },
-          "arabicName": {
-            "type": "string",
-            "nullable": true
-          },
-          "englishName": {
+          "name": {
             "type": "string",
             "nullable": true
           },
           "code": {
             "type": "string",
-            "nullable": true
-          },
-          "pagesCount": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "usersCount": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           }
         },

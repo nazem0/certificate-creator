@@ -4558,7 +4558,7 @@
         }
       }
     },
-    "/api/Countries": {
+    "/api/Countries/{id}": {
       "get": {
         "tags": [
           "Countries"
@@ -4566,7 +4566,8 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -4604,6 +4605,103 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CountryViewModelSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Countries"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Countries": {
+      "get": {
+        "tags": [
+          "Countries"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryViewModelListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryViewModelListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryViewModelListSwaggerOutput"
                 }
               }
             }
@@ -4738,60 +4836,6 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StringSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Countries/{id}": {
-      "delete": {
-        "tags": [
-          "Countries"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
                 }
               }
             }
@@ -13817,7 +13861,7 @@
         }
       }
     },
-    "/api/Nationalities": {
+    "/api/Nationalities/{id}": {
       "get": {
         "tags": [
           "Nationalities"
@@ -13825,7 +13869,8 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -13863,6 +13908,103 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NationalityViewModelSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Nationalities"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Nationalities": {
+      "get": {
+        "tags": [
+          "Nationalities"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/NationalityViewModelListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NationalityViewModelListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NationalityViewModelListSwaggerOutput"
                 }
               }
             }
@@ -13980,60 +14122,6 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Nationalities/{id}": {
-      "delete": {
-        "tags": [
-          "Nationalities"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -24900,6 +24988,75 @@
         }
       }
     },
+    "/api/Students/SaveInductionAgreement": {
+      "put": {
+        "tags": [
+          "Students"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuzzleFileInfo"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuzzleFileInfo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuzzleFileInfo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuzzleFileInfo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/SystemPageActions/filter": {
       "post": {
         "tags": [
@@ -30439,6 +30596,30 @@
         },
         "additionalProperties": false
       },
+      "CountryViewModelListSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CountryViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AddEditCountryViewModel": {
         "type": "object",
         "properties": {
@@ -31636,6 +31817,10 @@
           "categoryImage": {
             "type": "string",
             "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -31666,6 +31851,10 @@
           "courseCategoryId": {
             "type": "string",
             "format": "uuid",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
             "nullable": true
           },
           "englishName": {
@@ -34628,20 +34817,20 @@
             "type": "string",
             "nullable": true
           },
-          "videoErrorCode": {
+          "videoerrorCode": {
             "type": "string",
             "nullable": true
           },
-          "videoFailedReason": {
+          "videofailedReason": {
             "type": "string",
             "nullable": true
           },
-          "videoTimestamp": {
+          "videotimestamp": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           },
-          "videoPercentage": {
+          "videoprogress": {
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -35155,6 +35344,30 @@
           },
           "result": {
             "$ref": "#/components/schemas/NationalityViewModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NationalityViewModelListSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NationalityViewModel"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -38466,6 +38679,7 @@
           },
           "mobile": {
             "type": "string",
+            "format": "tel",
             "nullable": true
           },
           "attendingClass": {
@@ -38633,6 +38847,18 @@
             "type": "boolean"
           },
           "studyMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "inductionAgreement": {
+            "type": "string",
+            "nullable": true
+          },
+          "registrationLetter": {
+            "type": "string",
+            "nullable": true
+          },
+          "acceptanceLetter": {
             "type": "string",
             "nullable": true
           }
@@ -39507,6 +39733,7 @@
           },
           "mobile": {
             "type": "string",
+            "format": "tel",
             "nullable": true
           },
           "email": {
@@ -40528,6 +40755,23 @@
         },
         "additionalProperties": false
       },
+      "StudentProgramDaysViewModelPagedOutput": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentProgramDaysViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "StudentCourseListViewModel": {
         "type": "object",
         "properties": {
@@ -40574,11 +40818,7 @@
             "type": "boolean"
           },
           "daysOfCourse": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StudentProgramDaysViewModel"
-            },
-            "nullable": true
+            "$ref": "#/components/schemas/StudentProgramDaysViewModelPagedOutput"
           },
           "inClassCourse": {
             "type": "boolean"
@@ -40813,10 +41053,6 @@
           "lessonId": {
             "type": "string",
             "format": "uuid"
-          },
-          "videoPercentage": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -41958,6 +42194,22 @@
               "format": "uuid"
             },
             "nullable": true
+          },
+          "inductionAgreement": {
+            "type": "string",
+            "nullable": true
+          },
+          "registrationLetter": {
+            "type": "string",
+            "nullable": true
+          },
+          "acceptanceLetter": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationForm": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -42008,6 +42260,7 @@
           },
           "phone": {
             "type": "string",
+            "format": "tel",
             "nullable": true
           },
           "userType": {
@@ -42179,6 +42432,7 @@
           },
           "phone": {
             "type": "string",
+            "format": "tel",
             "nullable": true
           }
         },

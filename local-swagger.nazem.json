@@ -11604,17 +11604,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationState"
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationState"
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationState"
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
                 }
               }
             }
@@ -11647,17 +11647,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/StringSwaggerOutput"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/StringSwaggerOutput"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/StringSwaggerOutput"
                 }
               }
             }

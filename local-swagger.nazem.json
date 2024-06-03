@@ -11553,6 +11553,118 @@
         }
       }
     },
+    "/api/InductionAgreement": {
+      "post": {
+        "tags": [
+          "InductionAgreement"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InductionAgreementInputViewModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InductionAgreementInputViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InductionAgreementInputViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InductionAgreementInputViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationState"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationState"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationState"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "InductionAgreement"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Instructor/GetProgramByInstructorId": {
       "get": {
         "tags": [
@@ -33797,6 +33909,18 @@
         },
         "additionalProperties": false
       },
+      "InductionAgreementInputViewModel": {
+        "required": [
+          "file"
+        ],
+        "type": "object",
+        "properties": {
+          "file": {
+            "$ref": "#/components/schemas/PuzzleFileInfo"
+          }
+        },
+        "additionalProperties": false
+      },
       "ProgramLectureInstructorViewModel": {
         "type": "object",
         "properties": {
@@ -34807,20 +34931,20 @@
             "type": "string",
             "nullable": true
           },
-          "videoerrorCode": {
+          "videoErrorCode": {
             "type": "string",
             "nullable": true
           },
-          "videofailedReason": {
+          "videoFailedReason": {
             "type": "string",
             "nullable": true
           },
-          "videotimestamp": {
+          "videoTimestamp": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           },
-          "videoprogress": {
+          "videoPercentage": {
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -41029,6 +41153,12 @@
           "lessonId": {
             "type": "string",
             "format": "uuid"
+          },
+          "videoPercentage": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

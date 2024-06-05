@@ -38550,7 +38550,7 @@
             },
             "nullable": true
           },
-          "canDelete": {
+          "isSystem": {
             "type": "boolean"
           }
         },

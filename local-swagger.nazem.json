@@ -7055,6 +7055,51 @@
         }
       }
     },
+    "/api/CourseCategory/GetSubCategoryCourse": {
+      "get": {
+        "tags": [
+          "CourseCategory"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseSubCategoryViewModelListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseSubCategoryViewModelListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseSubCategoryViewModelListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/CourseCategory/GetAllMainCategory": {
       "get": {
         "tags": [
@@ -25121,30 +25166,6 @@
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/PuzzleFileInfo"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PuzzleFileInfo"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PuzzleFileInfo"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/PuzzleFileInfo"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Success",
@@ -32065,6 +32086,69 @@
         },
         "additionalProperties": false
       },
+      "CourseUnderSCViewModel": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseSubCategoryViewModel": {
+        "type": "object",
+        "properties": {
+          "subCourseCategoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "courseCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseUnderSCViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseSubCategoryViewModelListSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseSubCategoryViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "MainCategoryListModel": {
         "type": "object",
         "properties": {
@@ -38465,6 +38549,9 @@
               "format": "uuid"
             },
             "nullable": true
+          },
+          "canDelete": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -39014,8 +39101,12 @@
             "format": "double"
           },
           "courseId": {
-            "type": "string",
-            "format": "uuid"
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
           },
           "totaltuitionfees": {
             "type": "number",
@@ -39097,8 +39188,12 @@
             "format": "double"
           },
           "courseId": {
-            "type": "string",
-            "format": "uuid"
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
           },
           "totaltuitionfees": {
             "type": "number",
@@ -39573,6 +39668,18 @@
             "items": {
               "$ref": "#/components/schemas/SelfCourseForStudent"
             },
+            "nullable": true
+          },
+          "inductionAgreement": {
+            "type": "string",
+            "nullable": true
+          },
+          "registrationLetter": {
+            "type": "string",
+            "nullable": true
+          },
+          "acceptanceLetter": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -40855,23 +40962,6 @@
         },
         "additionalProperties": false
       },
-      "StudentProgramDaysViewModelPagedOutput": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "result": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StudentProgramDaysViewModel"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "StudentCourseListViewModel": {
         "type": "object",
         "properties": {
@@ -40918,7 +41008,11 @@
             "type": "boolean"
           },
           "daysOfCourse": {
-            "$ref": "#/components/schemas/StudentProgramDaysViewModelPagedOutput"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentProgramDaysViewModel"
+            },
+            "nullable": true
           },
           "inClassCourse": {
             "type": "boolean"
@@ -40936,6 +41030,9 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "locked": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

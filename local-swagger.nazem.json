@@ -8661,17 +8661,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/EmailTemplateListOutputViewModelSwaggerOutput"
+                  "$ref": "#/components/schemas/EmailTemplateListOutputViewModelPagedOutputSwaggerOutput"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EmailTemplateListOutputViewModelSwaggerOutput"
+                  "$ref": "#/components/schemas/EmailTemplateListOutputViewModelPagedOutputSwaggerOutput"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EmailTemplateListOutputViewModelSwaggerOutput"
+                  "$ref": "#/components/schemas/EmailTemplateListOutputViewModelPagedOutputSwaggerOutput"
                 }
               }
             }
@@ -17464,6 +17464,15 @@
           },
           {
             "name": "ProgramScheduleId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            }
+          },
+          {
+            "name": "ProgramLectureId",
             "in": "query",
             "schema": {
               "type": "string",
@@ -31098,6 +31107,16 @@
           },
           "organization": {
             "$ref": "#/components/schemas/OrganizationVM"
+          },
+          "courseDays": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -32887,7 +32906,24 @@
         },
         "additionalProperties": false
       },
-      "EmailTemplateListOutputViewModelSwaggerOutput": {
+      "EmailTemplateListOutputViewModelPagedOutput": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmailTemplateListOutputViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmailTemplateListOutputViewModelPagedOutputSwaggerOutput": {
         "type": "object",
         "properties": {
           "statusCode": {
@@ -32902,7 +32938,7 @@
             "type": "boolean"
           },
           "result": {
-            "$ref": "#/components/schemas/EmailTemplateListOutputViewModel"
+            "$ref": "#/components/schemas/EmailTemplateListOutputViewModelPagedOutput"
           }
         },
         "additionalProperties": false
@@ -35803,7 +35839,8 @@
           63,
           64,
           65,
-          66
+          66,
+          67
         ],
         "type": "integer",
         "format": "int32"
@@ -36618,6 +36655,9 @@
             "type": "string",
             "nullable": true
           },
+          "isStart": {
+            "type": "boolean"
+          },
           "description": {
             "type": "string",
             "nullable": true
@@ -36740,6 +36780,9 @@
           "recordingURL": {
             "type": "string",
             "nullable": true
+          },
+          "isStart": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -37174,6 +37217,10 @@
             "type": "string",
             "nullable": true
           },
+          "programLectureName": {
+            "type": "string",
+            "nullable": true
+          },
           "questionImage": {
             "type": "string",
             "nullable": true
@@ -37182,7 +37229,27 @@
             "type": "string",
             "nullable": true
           },
+          "courseID": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
           "moduleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programScheduleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programLectureId": {
             "type": "string",
             "format": "uuid",
             "nullable": true
@@ -37269,6 +37336,21 @@
           "type": {
             "$ref": "#/components/schemas/QuestionType"
           },
+          "programId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programScheduleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programLectureId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
           "newQuestionImage": {
             "$ref": "#/components/schemas/PuzzleFileInfo"
           },
@@ -37302,6 +37384,21 @@
             "nullable": true
           },
           "moduleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programScheduleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "programLectureId": {
             "type": "string",
             "format": "uuid",
             "nullable": true
@@ -39167,6 +39264,11 @@
           "acceptanceLetter": {
             "type": "string",
             "nullable": true
+          },
+          "quizStudentId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -39837,6 +39939,11 @@
           },
           "acceptanceLetter": {
             "type": "string",
+            "nullable": true
+          },
+          "quizStudentId": {
+            "type": "string",
+            "format": "uuid",
             "nullable": true
           }
         },
@@ -41149,6 +41256,10 @@
       "StudentCourseListViewModel": {
         "type": "object",
         "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
           "courseId": {
             "type": "string",
             "format": "uuid"
@@ -41216,6 +41327,12 @@
             "nullable": true
           },
           "locked": {
+            "type": "boolean"
+          },
+          "notCompleteRegistration": {
+            "type": "boolean"
+          },
+          "notSolvedEnglishTest": {
             "type": "boolean"
           }
         },
@@ -41346,6 +41463,23 @@
         },
         "additionalProperties": false
       },
+      "StudentProgramScheduleViewModelPagedOutput": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentProgramScheduleViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "StudentCourseDetailViewModel": {
         "type": "object",
         "properties": {
@@ -41366,11 +41500,7 @@
             "nullable": true
           },
           "modules": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StudentProgramScheduleViewModel"
-            },
-            "nullable": true
+            "$ref": "#/components/schemas/StudentProgramScheduleViewModelPagedOutput"
           },
           "prograss": {
             "type": "number",

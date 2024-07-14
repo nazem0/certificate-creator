@@ -13357,15 +13357,17 @@
         }
       }
     },
-    "/api/Modules": {
+    "/api/Modules/{id}": {
       "get": {
         "tags": [
           "Modules"
         ],
+        "operationId": "Get",
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -13409,6 +13411,60 @@
           }
         }
       },
+      "delete": {
+        "tags": [
+          "Modules"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Modules": {
       "post": {
         "tags": [
           "Modules"
@@ -13609,60 +13665,6 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Modules/{id}": {
-      "delete": {
-        "tags": [
-          "Modules"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -27519,6 +27521,96 @@
           }
         }
       }
+    },
+    "/api/Video/GetVideoStatus": {
+      "get": {
+        "tags": [
+          "Video"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnumModelListSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnumModelListSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnumModelListSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Video/GetVideoType": {
+      "get": {
+        "tags": [
+          "Video"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideoTypeSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideoTypeSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VideoTypeSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -34456,6 +34548,9 @@
             "type": "string",
             "nullable": true
           },
+          "isStart": {
+            "type": "boolean"
+          },
           "done": {
             "type": "boolean"
           },
@@ -34490,6 +34585,18 @@
           }
         },
         "additionalProperties": false
+      },
+      "VideoStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "format": "int32"
       },
       "StudentLectureLogInputVM": {
         "type": "object",
@@ -34552,6 +34659,39 @@
           },
           "videoURL": {
             "type": "string",
+            "nullable": true
+          },
+          "videoName": {
+            "type": "string",
+            "nullable": true
+          },
+          "videoerrorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "videofailedReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "videotimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "videoUpload": {
+            "type": "boolean"
+          },
+          "videoStatus": {
+            "$ref": "#/components/schemas/VideoStatus"
+          },
+          "videoStatusNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "videoprogress": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "meetingURL": {
@@ -35132,18 +35272,6 @@
         },
         "additionalProperties": false
       },
-      "VideoStatus": {
-        "enum": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
-        "type": "integer",
-        "format": "int32"
-      },
       "StudentLessonNoteListViewModel": {
         "type": "object",
         "properties": {
@@ -35170,34 +35298,51 @@
             "type": "string",
             "nullable": true
           },
-          "videoErrorCode": {
+          "videoName": {
             "type": "string",
             "nullable": true
           },
-          "videoFailedReason": {
+          "videoerrorCode": {
             "type": "string",
             "nullable": true
           },
-          "videoTimestamp": {
+          "videofailedReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "videotimestamp": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           },
-          "videoPercentage": {
+          "videoprogress": {
             "type": "integer",
             "format": "int32",
             "nullable": true
-          },
-          "videoStatus": {
-            "$ref": "#/components/schemas/VideoStatus"
           },
           "lessonIndex": {
             "type": "integer",
             "format": "int32"
           },
+          "videoUpload": {
+            "type": "boolean"
+          },
+          "videoStatus": {
+            "$ref": "#/components/schemas/VideoStatus"
+          },
+          "videoStatusNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "moduleId": {
             "type": "string",
             "format": "uuid"
+          },
+          "videoPercentage": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           },
           "isActive": {
             "type": "boolean"
@@ -35282,6 +35427,10 @@
             "nullable": true
           },
           "videoURL": {
+            "type": "string",
+            "nullable": true
+          },
+          "videoName": {
             "type": "string",
             "nullable": true
           },
@@ -36689,6 +36838,10 @@
           "programScheduleId": {
             "type": "string",
             "format": "uuid"
+          },
+          "videoName": {
+            "type": "string",
+            "nullable": true
           },
           "lessonIds": {
             "type": "array",
@@ -43013,6 +43166,43 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VideoType": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "uploadVideo": {
+            "type": "boolean"
+          },
+          "videoId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VideoTypeSwaggerOutput": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "result": {
+            "$ref": "#/components/schemas/VideoType"
           }
         },
         "additionalProperties": false

@@ -13362,7 +13362,6 @@
         "tags": [
           "Modules"
         ],
-        "operationId": "Get",
         "parameters": [
           {
             "name": "id",
@@ -13708,6 +13707,22 @@
             "schema": {
               "type": "string",
               "nullable": true
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           },
           {

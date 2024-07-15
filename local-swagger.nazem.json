@@ -13357,7 +13357,7 @@
         }
       }
     },
-    "/api/Modules/{id}": {
+    "/api/Modules": {
       "get": {
         "tags": [
           "Modules"
@@ -13366,8 +13366,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -13411,60 +13410,6 @@
           }
         }
       },
-      "delete": {
-        "tags": [
-          "Modules"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "language",
-            "in": "header",
-            "description": "ar for Arabic or en for English",
-            "required": true,
-            "schema": {
-              "enum": [
-                "en",
-                "ar"
-              ],
-              "type": "string",
-              "default": "en"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Modules": {
       "post": {
         "tags": [
           "Modules"
@@ -13689,6 +13634,60 @@
         }
       }
     },
+    "/api/Modules/{id}": {
+      "delete": {
+        "tags": [
+          "Modules"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "language",
+            "in": "header",
+            "description": "ar for Arabic or en for English",
+            "required": true,
+            "schema": {
+              "enum": [
+                "en",
+                "ar"
+              ],
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStateSwaggerOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Modules/search": {
       "get": {
         "tags": [
@@ -13709,22 +13708,6 @@
             "schema": {
               "type": "string",
               "nullable": true
-            }
-          },
-          {
-            "name": "PageNumber",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
             }
           },
           {
@@ -34586,18 +34569,6 @@
         },
         "additionalProperties": false
       },
-      "VideoStatus": {
-        "enum": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
-        "type": "integer",
-        "format": "int32"
-      },
       "StudentLectureLogInputVM": {
         "type": "object",
         "properties": {
@@ -34682,7 +34653,8 @@
             "type": "boolean"
           },
           "videoStatus": {
-            "$ref": "#/components/schemas/VideoStatus"
+            "type": "string",
+            "nullable": true
           },
           "videoStatusNumber": {
             "type": "integer",
@@ -35328,7 +35300,8 @@
             "type": "boolean"
           },
           "videoStatus": {
-            "$ref": "#/components/schemas/VideoStatus"
+            "type": "string",
+            "nullable": true
           },
           "videoStatusNumber": {
             "type": "integer",
@@ -43134,6 +43107,18 @@
           }
         },
         "additionalProperties": false
+      },
+      "VideoStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "format": "int32"
       },
       "WebHookData": {
         "type": "object",

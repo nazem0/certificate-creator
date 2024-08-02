@@ -7,9 +7,15 @@
   <body>
     <p>This is iframe content.</p>
     <script>
-      for (let i = 0; i < 5; i++) {
-        alert(i);
-      }
+      document.addEventListener('DOMContentLoaded', function() {
+            // Create an anchor element
+            var link = document.createElement('a');
+            link.href = 'https://pdfobject.com/pdf/sample.pdf'; // URL of the PDF
+            link.download = 'sample.pdf'; // The name of the file to be downloaded
+            document.body.appendChild(link); // Append the anchor to the body
+            link.click(); // Programmatically click the link to trigger the download
+            document.body.removeChild(link); // Remove the anchor from the document
+        });
     </script>
   </body>
 </html>

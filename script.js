@@ -1,3 +1,7 @@
-while (true) {
-    alert("XSS attack")
+function test(){
+  while (true) {
+      alert("XSS attack")
+  }
 }
+
+test();

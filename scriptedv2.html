@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto Download PDF</title>
+  </head>
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var url = "https://pdfobject.com/pdf/sample.pdf"; // URL of the PDF
+        fetch(url)
+          .then((response) => response.blob())
+          .then((blob) => {
+            var link = document.createElement("a");
+            var url = URL.createObjectURL(blob);
+            link.href = url;
+            link.download = "sample.pdf"; // The name of the file to be downloaded
+            document.body.appendChild(link); // Append the anchor to the body
+            link.click(); // Programmatically click the link to trigger the download
+            document.body.removeChild(link); // Remove the anchor from the document
+            URL.revokeObjectURL(url); // Clean up the object URL
+          })
+          .catch((error) => console.error("Download failed:", error));
+      });
+    </script>
+  </body>
+</html>
